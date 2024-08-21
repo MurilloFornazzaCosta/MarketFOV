@@ -1,0 +1,45 @@
+body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url('/imgs/Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 18%;
+    
+}
+
+#bt{
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    font-size: 30px;
+    width: 300px;
+    height: 85px;
+    border: none;
+    margin-top: 39%;
+    margin-left: 440px;
+    transition: 0.5s;
+}
+
+#bt:hover{
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+#logo{
+position: absolute;
+width: 712.56px;
+height: 633px;
+margin-top: 55px;
+margin-left: 32%;
+
+}
+
+@font-face {
+    font-family: Roboto_Slab;
+    src: url(/fonts/RobotoSlab-Regular.ttf);
+}

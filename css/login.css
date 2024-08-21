@@ -1,0 +1,108 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url('/imgs/BackgroundLogin.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 28%;
+}
+
+#bt {
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    font-size: 30px;
+    width: 179px;
+    height: 75px;
+    border: none;
+    margin-top: 16.5rem;
+    margin-left: 3rem;
+    transition: 0.5s;
+}
+
+#bt:hover {
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+form {
+    background-color: #8896AB;
+    border-radius: 15px;
+    width: 968px;
+    height: 540px;
+    transform: translateY(36%);
+}
+
+#textareaCNPJ,
+#textareaSenha {
+    border-radius: 10px;
+    border: none;
+    width: 20rem;
+    height: 2.5rem;
+}
+
+h1,
+input[type='text'],
+input[type='password'],
+label {
+    margin-left: 3rem;
+}
+
+h1 {
+    position: relative;
+    top: 4rem;
+    color: white;
+}
+
+label {
+    font-size: 1.4rem;
+    color: white;
+}
+
+#textCNPJ {
+    position: absolute;
+    margin-top: 6.5rem;
+}
+
+#textPassword {
+    position: absolute;
+    margin-top: 12rem;
+}
+
+input[type='text'] {
+    position: absolute;
+    margin-top: 7rem;
+    transition: 0.38s;
+}
+
+input[type='password'] {
+    position: absolute;
+    margin-top: 12.5rem;
+    transition: 0.38s;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.671);
+}
+
+#logo {
+    position: absolute;
+    width: 412px;
+    height: 366px;
+    margin-top: -3.3rem;
+    margin-left: 28rem;
+
+}

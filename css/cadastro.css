@@ -1,0 +1,88 @@
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url('/imgs/BackgroundCadastro.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 28%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+form {
+    background-color: #8896AB;
+    border-radius: 15px;
+    width: 1031px;
+    height: 801.01px;
+    transform: translateY(10%);
+}
+
+#logo {
+    position: absolute;
+    height: 413.97px;
+    width: 466px;
+    margin-top: -24.3rem;
+    margin-left: 28rem;
+}
+h1 {
+    position: relative;
+    top: 4rem;
+    color: white;
+    left: 3rem;
+}
+
+#textareaNome{
+    margin-top: 5rem;
+
+}
+input {
+    margin-left: 3rem;
+    border-radius: 10px;
+    border: none;
+    width: 20rem;
+    height: 2.5rem;
+    margin-top: 2rem;
+}
+
+#textName{
+    margin-top: 4.5rem;
+}
+label {
+    position: absolute;
+    margin-top: 1.7rem;
+    margin-left: 3rem;
+    font-size: 1.4rem;
+    color: white;
+}
+#bt {
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    font-size: 30px;
+    width: 200px;
+    height: 75px;
+    border: none;
+    font-size: 2.5rem;
+    margin-top: 4.5rem;
+    margin-left: 3rem;
+    transition: 0.5s;
+}
+
+#bt:hover {
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+a{
+    margin-top: -3rem;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
