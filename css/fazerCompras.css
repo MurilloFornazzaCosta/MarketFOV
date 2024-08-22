@@ -1,7 +1,8 @@
-body{
+body {
     background-color: #C5D5E4;
 }
-.navbar{
+
+.navbar {
     background-color: #8896AB;
     width: 65%;
     height: 73px;
@@ -9,58 +10,67 @@ body{
     justify-content: center;
     margin-top: 100px;
     display: flex;
-   
+
 }
-.navbar img{
+
+.navbar img {
     height: 50px;
     width: 50px;
     margin-top: 10px;
     transition: 0.4s;
 }
-.navbar img:hover{
+
+.navbar img:hover {
     transform: scale(1.2);
     cursor: pointer;
 }
-.buttons{
-     display: flex;
+
+.buttons {
+    display: flex;
     flex-direction: row;
     align-items: center;
 }
-.navbar button{
+
+.navbar button {
     margin-left: 10px;
     border-radius: 15px;
     background-color: #5a8b8a;
     color: #ffffff;
     font-family: Roboto_Slab;
-    width: 110px;
+    width: 120px;
     height: 50px;
     border: none;
     font-size: 1.2rem;
     transition: 0.5s;
     font-weight: bold;
 }
+
 .buttons button:hover {
     background-color: #3b6161;
     transform: scale(1.09);
     cursor: pointer;
 }
-.navbar button:nth-last-child(5){
+
+.navbar button:nth-last-child(5) {
     margin-left: 70px;
 }
-.buttons button:last-child:hover{
+
+.buttons button:last-child:hover {
     transform: scale(1.09);
     cursor: pointer;
     background-color: rgba(199, 29, 29, 0.87);
 }
-.buttons button:last-child{
+
+.buttons button:last-child {
     margin-left: 400px;
     background-color: rgb(233, 39, 39);
 }
-.detalhesProduto{
+
+.detalhesProduto {
     border-radius: 15px;
     background-color: #8896AB;
     width: 65%;
-    height: 500px;
+    height: 700px;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
@@ -68,26 +78,97 @@ body{
     justify-content: center;
     color: white;
 }
-.detalhesProduto img{
+
+.detalhesProduto img {
     width: 294px;
     height: 300px;
+    margin-top: 100px;
 }
-h2,p{
+
+h2,
+p {
     font-size: 1.5rem;
 }
-.detalhesProduto button{
+
+.detalhesProduto button {
     background-color: rgba(255, 0, 0, 0.726);
-    margin-left: 950px;
-    margin-top: -20px;
-    padding: 15px;
+    margin-left: 930px;
+    margin-top: 50px;
+    padding: 25px;
     color: white;
     border-radius: 12px;
     border: none;
     font-weight: bold;
-    transition:0.4s;
+    transition: 0.4s;
+    width: 240px;
+    font-size: 1.2rem;
 }
-.detalhesProduto button:hover{
+
+.detalhesProduto button:hover {
     cursor: pointer;
     background-color: rgba(182, 17, 17, 0.726);
-    transform:scale(1.1);
+    transform: scale(1.1);
+}
+
+.tabelaProdutos {
+    border-radius: 15px;
+    position: absolute;
+    top: 100px;
+    right: 2%;
+    background-color: #8896AB;
+    width: 600px;
+    height: 823.35px;
+    max-height: 823.35px;
+    /* Ajuste a altura conforme necessário */
+    overflow: auto;
+  
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-family: Roboto_Slab;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    width: 559.9px;
+    height: 200px;
+    margin-top: 30px;
+    margin-left: 20px;
+    overflow-y: scroll;
+    overflow: scroll;
+    flex: 1;
+}
+
+thead,
+tfoot {
+    background-color: #5a8b8a;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px 10px;
+    text-align: center;
+
+}
+tfoot{
+    position: sticky;
+    bottom: 0;
+    border: 1px solid black;
+    height: 40px;
+}
+tbody {
+    background-color: #C5D5E4;
+    overflow: scroll;
+    height: 200px;
+}
+
+tfoot th {
+    text-align: right;
+    font-weight: bold;
+}
+
+tfoot td {
+    font-weight: bold;
 }
