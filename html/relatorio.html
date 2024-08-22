@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/relatorio.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="/imgs/macedopng.png" alt="placeholder">
+        <div class="buttons">
+            <button>Registrar Produto</button>
+            <button>Aplicar Desconto</button>
+            <button>Relatório de vendas</button>
+            <button>Estoque</button>
+            <button>Finalizar caixa</button>
+        </div>
+    </div>
+
+    <div class="detalhesProduto">
+        <div class="container">
+            <div class="chart">
+                <canvas id="barchart" width="300" height="300"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="doughnut" width="300" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="/js/chart1.js"></script>
+    <script src="/js/chart2.js"></script>
+</body>
+</html>
