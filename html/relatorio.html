@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório das vendas</title>
+    <link rel="stylesheet" href="/css/relatorio.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/imgs/macedopng.png" alt="placeholder">
+        <div class="buttons">
+            <button>Registrar Produto</button>
+            <button>Aplicar Desconto</button>
+            <button>Relatório de vendas</button>
+            <button>Estoque</button>
+            <button>Finalizar caixa</button>
+        </div>
+    </div>
+
+    <div class="detalhesProduto">
+
+        <div id="pesquisa">
+            <label for="example-select">Pesquisar por:</label>
+            <select id="example-select" style="width: 200px;">
+                <option value="mes">Mês</option>
+                <option value="semana">Semana</option>
+                <option value="dia">Dia</option>
+            </select>
+        </div>
+
+        <div class="container">
+            <div class="chart">
+                <canvas id="barchart"></canvas>
+            </div>
+            <!--
+            <div class="chart2">
+                <canvas id="doughnut" width="300" height="300"></canvas>
+            </div>
+            -->
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example-select').select2();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="/js/chart1.js"></script>
+    <script src="/js/chart2.js"></script>
+</body>
+
+</html>
