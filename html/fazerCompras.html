@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fazer Compras</title>
     <link rel="stylesheet" href="/css/fazerCompras.css">
+    <script src="/scritps/fazercompras.js"></script>
 </head>
 
 <body>
     <div class="navbar">
-        <img src="/imgs/macedopng.png" alt="placeholder">
+        <div class="image-container">
+            <img src="/imgs/macedopng.png" alt="placeholder" id="logo">
+            <div class="comment-box" id="comment-box">
+                Alterar<br>foto
+            </div>
+        </div>
         <div class="buttons">
-            <button>Registrar Produto</button>
-            <button>Aplicar Desconto</button>
-            <button>Relatório de vendas</button>
-            <button>Estoque</button>
-            <button>Finalizar caixa</button>
+            <a href=""><button id="button">Registrar Produto</button></a>
+            <a href=""><button id="button">Aplicar Desconto</button></a>
+            <a href=""><button id="button">Relatório de vendas</button></a>
+            <a href=""><button id="button">Estoque</button></a>
+            <a href=""><button id="btfecharcaixa">Finalizar caixa</button></a>
         </div>
     </div>
     <main>
         <div class="detalhesProduto">
-
             <img src="/imgs/placeholderProduto.png" alt="Produto">
             <h2 id="nomeProduto">Nestlé Nescau 2.0 400g</h2>
             <p id="preco">R$12,50</p>
@@ -29,160 +34,165 @@
 
         </div>
     </main>
-        <div class="tabelaProdutos">
-            <table>
-                <thead>
-                   <tr>
+    <div class="tabelaProdutos">
+        <table>
+            <thead>
+                <tr>
                     <th scope="col">Produto</th>
                     <th scope="col">Quantd</th>
-                    <th scope="col">Preto</th>
-                   </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>   
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr> 
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Danoninho</th>
-                        <td>1</td>
-                        <td>R$15,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Manteiga</th>
-                        <td>1</td>
-                        <td>R$7,30</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Nescau</th>
-                        <td>1</td>
-                        <td>R$12,50</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="row" colspan="2">Total</th>
-                        <td>R$35,10</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+                    <th scope="col">Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Danoninho</th>
+                    <td>1</td>
+                    <td>R$15,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Manteiga</th>
+                    <td>1</td>
+                    <td>R$7,30</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nescau</th>
+                    <td>1</td>
+                    <td>R$12,50</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nutella</th>
+                    <td>2</td>
+                    <td>R$33,5</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row" colspan="2">Total</th>
+                    <td>R$35,10</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </body>
 
 </html>
