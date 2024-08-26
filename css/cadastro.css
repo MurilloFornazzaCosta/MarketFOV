@@ -1,4 +1,3 @@
-
 body {
     overflow: hidden;
     margin: 0;
@@ -8,6 +7,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     margin-bottom: 28%;
+    font-family: Roboto_Slab;
+
 }
 
 .form-container {
@@ -16,6 +17,7 @@ body {
     align-items: center;
     align-content: center;
 }
+
 form {
     background-color: #8896AB;
     border-radius: 15px;
@@ -31,6 +33,7 @@ form {
     margin-top: -24.3rem;
     margin-left: 28rem;
 }
+
 h1 {
     position: relative;
     top: 4rem;
@@ -38,10 +41,11 @@ h1 {
     left: 3rem;
 }
 
-#textareaNome{
+#textareaNome {
     margin-top: 5rem;
 
 }
+
 input {
     margin-left: 3rem;
     border-radius: 10px;
@@ -51,9 +55,10 @@ input {
     margin-top: 2rem;
 }
 
-#textName{
+#textName {
     margin-top: 4.5rem;
 }
+
 label {
     position: absolute;
     margin-top: 1.7rem;
@@ -61,6 +66,7 @@ label {
     font-size: 1.4rem;
     color: white;
 }
+
 #bt {
     border-radius: 15px;
     background-color: #5a8b8a;
@@ -81,8 +87,13 @@ label {
     transform: scale(1.09);
     cursor: pointer;
 }
-a{
+
+a {
     margin-top: -3rem;
     margin-left: 1rem;
     font-size: 1.5rem;
+}
+@font-face {
+    font-family: Roboto_Slab;
+    src: url('/fonts/RobotoSlab-Regular.ttf');
 }

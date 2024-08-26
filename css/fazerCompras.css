@@ -1,5 +1,6 @@
 body {
     background-color: #C5D5E4;
+    font-family: Roboto_Slab;
 }
 
 .navbar {
@@ -18,20 +19,57 @@ body {
     width: 50px;
     margin-top: 10px;
     transition: 0.4s;
+    z-index: 1;
 }
-
-.navbar img:hover {
+.image-container:hover img{
     transform: scale(1.2);
-    cursor: pointer;
+    opacity: 0.5;
+}
+.navbar p{
+    font-size: 1rem;
+    position: absolute;
+    left: 31px;
+    top: 100px;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.4s;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
 }
 
+.comment-box {
+    position: absolute;
+    bottom: 17%;
+    /* Posiciona acima da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    /* Evita quebra de linha */
+    display: none;
+    /* Inicialmente escondido */
+    z-index: 1;
+    cursor: pointer;
+    text-align: center;
+    width: max-content;
+    font-family: Roboto_Slab;
+    font-size: 1.15rem;
+}
+.image-container:hover .comment-box {
+    display: block;
+    /* Exibe o comentário ao passar o mouse */
+}
 .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.navbar button {
+#button {
     margin-left: 10px;
     border-radius: 15px;
     background-color: #5a8b8a;
@@ -45,24 +83,33 @@ body {
     font-weight: bold;
 }
 
-.buttons button:hover {
+#button:hover {
     background-color: #3b6161;
     transform: scale(1.09);
     cursor: pointer;
 }
 
-.navbar button:nth-last-child(5) {
+.buttons :nth-last-child(5) {
     margin-left: 70px;
 }
 
-.buttons button:last-child:hover {
+#btfecharcaixa:hover {
     transform: scale(1.09);
     cursor: pointer;
     background-color: rgba(199, 29, 29, 0.87);
 }
 
-.buttons button:last-child {
+#btfecharcaixa {
+    font-family: Roboto_Slab;
+    border-radius: 15px;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
     margin-left: 400px;
+    color: #ffffff;
     background-color: rgb(233, 39, 39);
 }
 
@@ -101,7 +148,9 @@ p {
     font-weight: bold;
     transition: 0.4s;
     width: 240px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: Roboto_Slab;
+
 }
 
 .detalhesProduto button:hover {
@@ -121,7 +170,7 @@ p {
     max-height: 823.35px;
     /* Ajuste a altura conforme necessário */
     overflow: auto;
-  
+
 }
 
 table {
@@ -139,7 +188,9 @@ table {
     overflow: scroll;
     flex: 1;
 }
-
+.tabelaProdutos::-webkit-scrollbar{
+    display: none;
+}
 thead,
 tfoot {
     background-color: #5a8b8a;
@@ -152,12 +203,14 @@ td {
     text-align: center;
 
 }
-tfoot{
+
+tfoot {
     position: sticky;
     bottom: 0;
     border: 1px solid black;
     height: 40px;
 }
+
 tbody {
     background-color: #C5D5E4;
     overflow: scroll;
@@ -171,4 +224,8 @@ tfoot th {
 
 tfoot td {
     font-weight: bold;
+}
+@font-face {
+    font-family: Roboto_Slab;
+    src: url('/fonts/RobotoSlab-Regular.ttf');
 }
