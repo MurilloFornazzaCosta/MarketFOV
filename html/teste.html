@@ -1,131 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulário com Validação</title>
     <style>
-        .tabelaProdutos {
-            width: 100%;
-            max-height: 400px; /* Ajuste a altura conforme necessário */
-            overflow: hidden; /* Oculta o excesso para permitir o scroll apenas no tbody */
-            border: 1px solid #ddd; /* Adiciona uma borda ao redor da tabela */
-            display: block;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        thead, tfoot {
-            display: table;
-            width: calc(100% - 1px); /* Ajusta a largura para coincidir com o corpo da tabela */
-            background-color: #f4f4f4;
-        }
-
-        thead th, tfoot th, tbody td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-            width: 33.33%; /* Ajuste conforme o número de colunas */
-            box-sizing: border-box; /* Inclui padding e borda na largura total */
-        }
-
-        thead th {
-            background-color: #f4f4f4;
-            position: sticky;
-            top: 0;
-            z-index: 1; /* Garante que o cabeçalho fique acima do corpo rolável */
-        }
-
-        tbody {
-            display: block;
-            max-height: 300px; /* Ajuste a altura do corpo conforme necessário */
-            overflow: auto;
-        }
-
-        tbody tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed; /* Garante que o layout da tabela seja fixo e as colunas tenham largura consistente */
-        }
-
-        tfoot {
-            border-top: 1px solid #ddd;
-            position: sticky;
-            bottom: 0;
-            background-color: #f4f4f4;
-            display: table;
+        .error {
+            color: red;
         }
     </style>
 </head>
-
 <body>
-    <div class="tabelaProdutos">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Quantd</th>
-                    <th scope="col">Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Danoninho</td>
-                    <td>1</td>
-                    <td>R$15,30</td>
-                </tr>
-                <tr>
-                    <td>Manteiga</td>
-                    <td>1</td>
-                    <td>R$7,30</td>
-                </tr>
-                <tr>
-                    <td>Nescau</td>
-                    <td>1</td>
-                    <td>R$12,50</td>
-                </tr>
-                <!-- Repita as linhas conforme necessário -->
-                <tr>
-                    <td>Danoninho</td>
-                    <td>1</td>
-                    <td>R$15,30</td>
-                </tr>
-                  <tr>
-                    <td>Danoninho</td>
-                    <td>1</td>
-                    <td>R$15,30</td>
-                </tr>
-                <tr>
-                    <td>Manteiga</td>
-                    <td>1</td>
-                    <td>R$7,30</td>
-                </tr>
-                <tr>
-                    <td>Nescau</td>
-                    <td>1</td>
-                    <td>R$12,50</td>
-                </tr>
-                <!-- Repita as linhas conforme necessário -->
-                <tr>
-                    <td>Danoninho</td>
-                    <td>1</td>
-                    <td>R$15,30</td>
-                </tr>
-                <!-- Mais linhas... -->
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th scope="row" colspan="2">Total</th>
-                    <td>R$35,10</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</body>
+    <form id="meuFormulario" action="" method="post">
+        <label for="codigodebarra" id="textcdb">Código de Barras</label>
+        <br>
+        <input type="text" id="textareacdb" name="codigodebarra">
+        <span class="error" id="errorCDB"></span>
+        <br><br>
+        
+        <label for="nome" id="textName">Nome do Produto</label>
+        <br>
+        <input type="text" id="textareaNome" name="name">
+        <span class="error" id="errorNome"></span>
+        <br><br>
+        
+        <label for="preco" id="textPreco">Preço</label>
+        <br>
+        <input type="text" id="textareaPreco" name="preco">
+        <span class="error" id="errorPreco"></span>
+        <br><br>
+        
+        <label for="tipo" id="textTipo">Tipo de Produto</label>
+        <br>
+        <select name="tipos" id="tipos">
+            <option value="">Selecione um tipo</option>
+            <option value="limpeza">Produto de Limpeza</option>
+            <option value="higiene">Higiene Pessoal</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="variados">Variados</option>
+        </select>
+        <span class="error" id="errorTipo"></span>
+        <br><br>
+        
+        <input type="submit" class="registrar" value="Cadastrar">
+    </form>
 
+    <script>
+        document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+            let valido = true;
+
+            // Limpa mensagens de erro
+            document.getElementById('errorCDB').textContent = '';
+            document.getElementById('errorNome').textContent = '';
+            document.getElementById('errorPreco').textContent = '';
+            document.getElementById('errorTipo').textContent = '';
+
+            // Validação do Código de Barras
+            const codigodebarra = document.getElementById('textareacdb').value;
+            if (codigodebarra.trim() === '') {
+                document.getElementById('errorCDB').textContent = 'Código de barras é obrigatório.';
+                valido = false;
+            }
+
+            // Validação do Nome do Produto
+            const nome = document.getElementById('textareaNome').value;
+            if (nome.trim() === '') {
+                document.getElementById('errorNome').textContent = 'Nome do produto é obrigatório.';
+                valido = false;
+            }
+
+            // Validação do Preço
+            const preco = document.getElementById('textareaPreco').value;
+            if (preco.trim() === '' || isNaN(preco) || preco <= 0) {
+                document.getElementById('errorPreco').textContent = 'Preço deve ser um número positivo.';
+                valido = false;
+            }
+
+            // Validação do Tipo de Produto
+            const tipo = document.getElementById('tipos').value;
+            if (tipo === '') {
+                document.getElementById('errorTipo').textContent = 'Tipo de produto é obrigatório.';
+                valido = false;
+            }
+
+            // Se algum campo não for válido, previne o envio do formulário
+            if (!valido) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
 </html>
