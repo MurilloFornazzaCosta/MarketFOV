@@ -250,13 +250,27 @@ table {
 .chart2 {
     width: 250px;
     padding: 2rem;
-    margin-left: 5rem;
+    margin-left: 3rem;
     margin-top: 2rem;
     border: 3px solid #5a8b7a;
     border-radius: 1rem;
     background: #c1d7ff;
+    opacity: 0; /* Inicialmente invisível */
+    animation: fadeIn 1s ease-in-out forwards; /* Animação de fade-in */
 
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Começa um pouco abaixo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina na posição original */
+    }
+}
+
 
 @font-face {
     font-family: Roboto_Slab;
