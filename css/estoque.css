@@ -1,0 +1,196 @@
+body {
+    background-color: #C5D5E4;
+    font-family: Roboto_Slab;
+}
+
+.navbar {
+    background-color: #8896AB;
+    width: 65%;
+    height: 73px;
+    border-radius: 15px;
+    justify-content: center;
+    margin-top: 100px;
+    display: flex;
+
+}
+
+.navbar img {
+    height: 50px;
+    width: 50px;
+    margin-top: 10px;
+    transition: 0.4s;
+    z-index: 1;
+}
+.image-container:hover img{
+    transform: scale(1.2);
+    opacity: 0.5;
+}
+.navbar p{
+    font-size: 1rem;
+    position: absolute;
+    left: 31px;
+    top: 100px;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.4s;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.comment-box {
+    position: absolute;
+    bottom: 17%;
+    /* Posiciona acima da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    /* Evita quebra de linha */
+    display: none;
+    /* Inicialmente escondido */
+    z-index: 1;
+    cursor: pointer;
+    text-align: center;
+    width: max-content;
+    font-family: Roboto_Slab;
+    font-size: 1.15rem;
+}
+.image-container:hover .comment-box {
+    display: block;
+    /* Exibe o comentário ao passar o mouse */
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#button {
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+}
+
+#button:hover {
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+.buttons :nth-last-child(5) {
+    margin-left: 70px;
+}
+
+#btfecharcaixa:hover {
+    transform: scale(1.09);
+    cursor: pointer;
+    background-color: rgba(199, 29, 29, 0.87);
+}
+
+#btfecharcaixa {
+    font-family: Roboto_Slab;
+    border-radius: 15px;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+    margin-left: 400px;
+    color: #ffffff;
+    background-color: rgb(233, 39, 39);
+}
+
+.detalhesProduto {
+    border-radius: 15px;
+    background-color: #8896AB;
+    width: 65%;
+    height: 700px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+h2,
+p {
+    font-size: 1.5rem;
+}
+
+.tabelaProdutos {
+    border-radius: 15px;
+    width: 1110px;
+    height: 650.95px;
+    max-height: 650.95px;
+    /* Ajuste a altura conforme necessário */
+    overflow: auto;
+    margin-right: 20px;
+    margin-top: -15px;
+}
+h1{
+    font-family: Roboto_Slab;
+    margin-left: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    font-family: Roboto_Slab;
+    color: black;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    width: 1080px;
+    height: 200px;
+    margin-top: 30px;
+    margin-left: 20px;
+    overflow-y: scroll;
+    overflow: scroll;
+    flex: 1;
+    margin-bottom: 40px;
+}
+.tabelaProdutos::-webkit-scrollbar{
+    display: none;
+}
+thead{
+    background-color: #5a8b8a;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px 10px;
+    text-align: center;
+
+}
+
+thead{
+    position: sticky;
+    top: -1px;
+    border: 1px solid black;
+    height: 40px;
+}
+tbody {
+    background-color: #C5D5E4;
+    overflow: scroll;
+    height: 200px;
+}
+
+@font-face {
+    font-family: Roboto_Slab;
+    src: url('/fonts/RobotoSlab-Bold.ttf');
+}
