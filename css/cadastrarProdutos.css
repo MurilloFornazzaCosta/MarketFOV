@@ -92,7 +92,9 @@ body {
     margin-left: 2rem;
     transition: 0.5s;
 }
-
+.error{
+    color: red;
+}
 .registrar:hover {
     background-color: #3b6161;
     transform: scale(1.09);
@@ -207,10 +209,19 @@ tfoot td {
     margin-left: 40rem;
     margin-top: -43%;
 }
+#erroAoRegistrar {
+    width: 0;
+    padding: 10px;
+    display: none; /* Inicialmente escondido */
+}
 
+#produtoRegistrado {
+    display: none; /* Inicialmente escondido */
+    padding: 10px;
+}
 #erroAoRegistrar{
     width: 277px;
     height: 318px;
     margin-left: 40rem;
-    margin-top: -318px;
+    margin-top: -43%;
 }

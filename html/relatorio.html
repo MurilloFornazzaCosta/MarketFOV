@@ -25,36 +25,38 @@
     <main>
         <div class="detalhesProduto">
             <div id="pesquisa">
-                <label for="example-select">Pesquisar por:</label>
-                <select id="example-select" style="width: 200px;">
+                <label for="example_select">Pesquisar por:</label>
+                <select id="example_select" style="width: 200px;">
                     <option value="mes">Mês</option>
                     <option value="semana">Semana</option>
                     <option value="dia">Dia</option>
                 </select>
+                
             </div>
             <div class="container">
                 <div class="chart">
                     <canvas id="barchart"></canvas>
                 </div>
-                <!--
-                <div class="chart2">
-                    <canvas id="doughnut" width="300" height="300"></canvas>
-                </div>
-                -->
+                
+                
             </div>
         </div>
     </main>
 
     <div class="tabelaProdutos">
-        <div class="filtro1">  
-            <img class="iconProdutosVendidos" src="/imgs/mao.png" alt="">
-            <h3 class="txtProdutosVendidos">Produtos mais vendidos</h3>
-        </div>
+        <button class="filtro1" id="filtro1" onclick="showChart2() ">
+            
+                <img class="iconProdutosVendidos" src="/imgs/mao.png" alt="">
+                <h3 class="txtProdutosVendidos">Produtos mais vendidos</h3>
+            
+        </button>
 
-        <div class="filtro2">  
+          
+        <button class="filtro2" id="filtro2" onclick="showChart3()" >
             <img class="iconProdutosVendidos" src="/imgs/comissao.png" alt="">
             <h3 class="txtProdutosVendidos">Todas as vendas</h3>
-        </div>
+        </button>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -65,8 +67,8 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-    <script src="/js/chart1.js"></script>
-    <script src="/js/chart2.js"></script>
+    <script src="/js/mainChart.js"></script>
+    <script src="/js/secondChart.js"></script>
 </body>
 
 </html>

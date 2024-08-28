@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produtos</title>
     <link rel="stylesheet" href="/css/cadastrarProdutos.css">
-    <script src="/js/cadastrarProdutos.js"></script>
+    <script src="/js/fazercompras.js"></script>
+    <style>
+        /* Adicione estilos básicos para as imagens */
+        #produtoRegistrado,
+        #erroAoRegistrar {
+            display: none;
+            /* Inicialmente, as imagens estão ocultas */
+        }
+    </style>
 </head>
 
 <body>
+
     <div class="navbar">
         <img src="/imgs/macedopng.png" alt="placeholder">
         <div class="buttons">
@@ -26,30 +35,31 @@
             <form id="meuFormulario" action="" method="post">
                 <label for="codigodebarra" id="textcdb">Código de Barras</label>
                 <br>
-                <input type="text" id="textareacdb" name="codigodebarra">
+                <input type="text" id="codigodebarra" name="codigodebarra">
                 <span class="error" id="errorCDB"></span>
                 <br><br>
 
                 <label for="nome" id="textName">Nome do Produto</label>
                 <br>
-                <input type="text" id="textareaNome" name="name">
+                <input type="text" id="nome" name="nome">
                 <span class="error" id="errorNome"></span>
                 <br><br>
 
                 <label for="preco" id="textPreco">Preço</label>
                 <br>
-                <input type="text" id="textareaPreco" name="preco">
+                <input type="text" id="preco" name="preco">
                 <span class="error" id="errorPreco"></span>
                 <br><br>
-                <label for="quantd" id="textQuantd">Quantidade </label>
+
+                <label for="quantd" id="textQuantd">Quantidade</label>
                 <br>
-                <input type="text" id="textareaQuantd" name="preco">
+                <input type="text" id="quantd" name="quantd">
                 <span class="error" id="errorQuantd"></span>
                 <br><br>
 
                 <label for="tipo" id="textTipo">Tipo de Produto</label>
                 <br>
-                <select name="tipos" id="tipos">
+                <select name="tipo" id="tipo">
                     <option value="">Selecione um tipo</option>
                     <option value="limpeza">Produto de Limpeza</option>
                     <option value="higiene">Higiene Pessoal</option>
@@ -61,8 +71,8 @@
 
                 <input type="submit" class="registrar" value="Cadastrar">
             </form>
-            <img src="/imgs/produtoRegistrado.png" id="produtoRegistrado" alt="">
-            <img src="/imgs/erroAoRegistrar.png" id="erroAoRegistrar" alt="">
+            <img src="/imgs/produtoRegistrado.png" id="produtoRegistrado" alt="Produto Registrado">
+            <img src="/imgs/erroAoRegistrar.png" id="erroAoRegistrar" alt="Erro ao Registrar">
         </div>
     </main>
     <div class="tabelaProdutos">
@@ -95,56 +105,7 @@
             </tfoot>
         </table>
     </div>
-    <script>
-        document.getElementById('meuFormulario').addEventListener('submit', function (event) {
-            let valido = true;
-
-            // Limpa mensagens de erro
-            document.getElementById('errorCDB').textContent = '';
-            document.getElementById('errorNome').textContent = '';
-            document.getElementById('errorPreco').textContent = '';
-            document.getElementById('errorTipo').textContent = '';
-            document.getElementById('errorQuantd').textContent = '';
-
-            // Validação do Código de Barras
-            const codigodebarra = document.getElementById('textareacdb').value;
-            if (codigodebarra.trim() === '' && valido == true) {
-                document.getElementById('errorCDB').textContent = 'Código de barras é obrigatório.';
-                valido = false;
-            } else {
-                document.getElementById('errorCDB').textContent = 'n funfou.';
-            }
-
-            // Validação do Nome do Produto
-            const nome = document.getElementById('textareaNome').value;
-            if (nome.trim() === '') {
-                document.getElementById('errorCDB').innerHTML += '<br>Nome do produto é obrigatório.';
-                valido = false;
-            }
-
-            // Validação do Preço
-            const preco = document.getElementById('textareaPreco').value;
-            if (preco.trim() === '' || isNaN(preco) || preco <= 0) {
-                document.getElementById('errorPreco').textContent = 'Preço deve ser um número positivo.';
-                valido = false;
-            }
-
-            // Validação do Tipo de Produto
-            const tipo = document.getElementById('tipos').value;
-            if (tipo === '') {
-                document.getElementById('errorTipo').textContent = 'Tipo de produto é obrigatório.';
-                valido = false;
-            }
-            const quantd = document.getElementById('textareaQuantd').value
-            if (quantd === '' || isNaN(quantd) || quantd <= 0 && valido == true) {
-                document.getElementById('errorQuantd').textContent = 'Quantidade inserida inválida!'
-            }
-            // Se algum campo não for válido, previne o envio do formulário
-            if (!valido) {
-                event.preventDefault();
-            }
-        });
-    </script>
+    <script src="/js/cadastrarProdutos.js"></script>
 </body>
 
 </html>
