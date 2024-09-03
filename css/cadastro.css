@@ -36,13 +36,14 @@ form {
 
 h1 {
     position: relative;
-    top: 4rem;
+    top: 1rem;
     color: white;
     left: 3rem;
+    font-size: 36px;
 }
 
 #textareaNome {
-    margin-top: 5rem;
+    margin-top: 2rem;
 
 }
 
@@ -52,16 +53,16 @@ input {
     border: none;
     width: 20rem;
     height: 2.5rem;
-    margin-top: 2rem;
+    margin-top: .8rem;
 }
 
 #textName {
-    margin-top: 4.5rem;
+    margin-top: 1rem;
 }
 
 label {
     position: absolute;
-    margin-top: 1.7rem;
+    margin-top: .3rem;
     margin-left: 3rem;
     font-size: 1.4rem;
     color: white;
@@ -77,7 +78,7 @@ label {
     height: 75px;
     border: none;
     font-size: 2.5rem;
-    margin-top: 4.5rem;
+    margin-top: 3rem;
     margin-left: 3rem;
     transition: 0.5s;
 }
