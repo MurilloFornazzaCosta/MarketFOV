@@ -192,5 +192,5 @@ tbody {
 
 @font-face {
     font-family: Roboto_Slab;
-    src: url('/fonts/RobotoSlab-Bold.ttf');
+    src: url('../fonts/RobotoSlab-Regular.ttf');
 }

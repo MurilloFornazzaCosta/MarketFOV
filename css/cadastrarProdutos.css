@@ -200,7 +200,7 @@ tfoot td {
 }
 @font-face {
     font-family: Roboto_Slab;
-    src: url('/fonts/RobotoSlab-Regular.ttf');
+    src: url('../fonts/RobotoSlab-Regular.ttf');
 }
 
 #produtoRegistrado{
