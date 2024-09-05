@@ -27,7 +27,7 @@ conn.connect((err) => {
 
 // Rota para obter dados da tabela venda
 app.get('/vendas', (req, res) => {
-    const query = 'SELECT * FROM contem'; // Substitua pelo seu SQL
+    const query = '    SELECT contem.qtdVendidos, contem.barCode, produtos.preco, venda.codeCupom, venda.dataVenda FROM contem JOIN produtos ON produtos.barCode = contem.barCode JOIN venda ON venda.codeCupom = contem.codeCupom;'; // Substitua pelo seu SQL
     conn.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
