@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Constrói a mensagem de erro ou sucesso
     if (!empty($errors)) {
         $message = implode(' | ', $errors);
-        header("Location: /MarketFOV-Sprint_V1.6.2/html/cadastro.php?message=" . urlencode($message));
+        header("Location: /MarketFOV-Sprint/html/cadastro.php?message=" . urlencode($message));
         exit;
     } else {
         $login = null;
@@ -93,10 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($insere->execute()) {
             $message = "Cadastro realizado com sucesso!";
         }
-        header("Location: /MarketFOV-Sprint_V1.6.2/html/cadastro.php?message=" . urlencode($message) . "&success=true");
+        header("Location: /MarketFOV-Sprint/html/cadastro.php?message=" . urlencode($message) . "&success=true");
         exit;
     }
 } else {
-    header("Location: /MarketFOV-Sprint_V1.6.2/html/cadastro.php");
+    header("Location: /MarketFOV-Sprint/html/cadastro.php");
     exit;
 }

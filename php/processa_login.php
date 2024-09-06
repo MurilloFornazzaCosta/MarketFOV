@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($authenticated) {
-        header('Location: /MarketFOV-Sprint_V1.6.2/html/fazerCompras.html');
+        header('Location: /MarketFOV-Sprint/html/fazerCompras.html');
         exit();
     } else {
         $message = 'CNPJ ou Senha Inválidos, tente novamente!';
-        header("Location: /MarketFOV-Sprint_V1.6.2/html/login.php?message=" . urlencode($message));
+        header("Location: /MarketFOV-Sprint/html/login.php?message=" . urlencode($message));
         exit();
     }
 }
