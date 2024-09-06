@@ -2,9 +2,13 @@ const ctx = document.getElementById('barchart').getContext('2d');
 const selectElement = document.getElementById('example_select');
 let barchart;
 let label;
-let totalPorVenda = []; // Para armazenar o valor total de cada venda
-let datasVenda = [];
+let totaisDasVendas = []; // Para armazenar o valor total de cada venda
+let datasVendas = [];
+let vendas = [];
+let valorVenda;
 var valorDoDia;
+let vendasPorDia = {};
+
 
 // Função para obter dados do servidor e calcular o valor total de cada venda
 async function fetchVendas() {
@@ -14,22 +18,16 @@ async function fetchVendas() {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        data.forEach(element => {
+            vendas.push(element)
+        });
+        // Calcula o valor total para cada venda 
+        totaisDasVendas = data.map(venda => venda.totalVenda);
+        datasVendas = data.map(venda => venda.dataVenda);
 
-        // Calcula o valor total para cada venda (preço * qtdVendidos)
-        totalPorVenda = data.map(venda => venda.preco * venda.qtdVendidos);
-        datasVenda = data.map(venda => venda.dataVenda);
-        for (let index = 0; index < totalPorVenda.length; index++) {
-            
-            if (datasVenda[index] === datasVenda[index - 1] && index > 0) {
-                valorDoDia += totalPorVenda[index];
-            } else {
-                valorDoDia = 'ddd';
-            }
-
-        }
         // Atualiza o gráfico com os novos dados
         if (barchart) {
-            barchart.data.datasets[0].data = totalPorVenda;
+            barchart.data.datasets[0].data = totaisDasVendas;
             barchart.update(); // Atualiza o gráfico
         }
 
@@ -44,6 +42,7 @@ fetchVendas();
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     selectElement.value = 'mes';
     label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -51,10 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
     barchart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: label,
+            labels: datasVendas,
             datasets: [{
                 label: 'Relatório de vendas',
-                data: totalPorVenda, // Agora usa os dados calculados
+                data: totaisDasVendas, // Agora usa os dados calculados
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(54, 162, 235, 0.7)',
@@ -83,11 +82,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
+let contador = 0;
 selectElement.addEventListener("change", function () {
+    // for (let index = 0; index < datasVendas.length; index++) {
 
+    //     datasVendas[index] = datasVendas[index - 1];
 
+    //     valorVenda = totaisDasVendas[index] + totaisDasVendas[index - 1];
 
+    //     console.log(valorVenda);
+    // }
+    function somaVendasPorDia() {
+        if (contador == 0) {
+            vendas.forEach(venda => {
+                if (vendasPorDia[venda.dataVenda]) {
+                    vendasPorDia[venda.dataVenda] += venda.totalVenda;
+                } else {
+                    vendasPorDia[venda.dataVenda] = venda.totalVenda
+                }
+            });
+
+            const results = Object.keys(vendasPorDia).map(data => {
+                return { data: data, totalVenda: vendasPorDia[data] };
+            });
+            contador++;
+            return results;
+        } else {
+        }
+    }
+    console.log(somaVendasPorDia());
+    console.log(datasVendas)
     //valorDoDia = 'ddd';
 
     console.log(valorDoDia);
@@ -114,10 +138,10 @@ selectElement.addEventListener("change", function () {
     barchart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: datasVenda,
+            labels: '',
             datasets: [{
-                label: 'Relatório de vendas',
-                data: valorDoDia, // Usa os valores calculados aqui
+                label: '',
+                data: vendasPorDia, // Usa os valores calculados aqui
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
