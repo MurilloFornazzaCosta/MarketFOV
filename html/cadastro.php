@@ -51,7 +51,7 @@
             <br>
             <img id="logo" src="../imgs/Logo.png" alt="">
             <button id="bt">Cadastrar</button>
-            <a href="login.html">Já Possui Cadastro?</a>
+            <a href="login.php">Já Possui Cadastro?</a>
         </form>
     </div>
 </body>
