@@ -2,18 +2,18 @@ function showChart3() {
     // Seleciona a div que irá conter o gráfico
     var tabelaProdutosDiv = document.querySelector('.tabelaProdutos');
 
-    // Verifica se a div chart3 já existe e a remove se necessário
-    var existingChart3Div = document.querySelector('.chart3');
-    if (existingChart3Div) {
-        existingChart3Div.remove();
+    // Verifica se a div chart2 já existe e a remove se necessário
+    var existingChart2Div = document.querySelector('.chart2');
+    if (existingChart2Div) {
+        existingChart2Div.remove();
     }
 
-    // Cria a div chart3
-    var chart3Div = document.createElement('div');
-    chart3Div.className = 'chart3';
+    // Cria a div chart2
+    var chart2Div = document.createElement('div');
+    chart2Div.className = 'chart2';
 
     // Adiciona a nova div ao container tabelaProdutos
-    tabelaProdutosDiv.appendChild(chart3Div);
+    tabelaProdutosDiv.appendChild(chart2Div);
 
     // Cria o elemento canvas
     var canvas = document.createElement('canvas');
@@ -23,14 +23,14 @@ function showChart3() {
     canvas.width = 300;
     canvas.height = 300;
 
-    // Adiciona o canvas à div chart3
-    chart3Div.appendChild(canvas);
+    // Adiciona o canvas à div chart2
+    chart2Div.appendChild(canvas);
 
     // Obtém o contexto do canvas
-    const ctx3 = canvas.getContext('2d');
+    const ctx2 = canvas.getContext('2d');
 
     // Cria o gráfico
-    new Chart(ctx3, {
+    new Chart(ctx2, {
         type: 'doughnut',
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
