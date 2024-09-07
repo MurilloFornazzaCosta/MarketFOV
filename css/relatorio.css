@@ -2,7 +2,6 @@ body {
     background-color: #C5D5E4;
     font-family: Roboto_Slab;
 }
-
 .navbar {
     background-color: #8896AB;
     width: 65%;
@@ -11,27 +10,22 @@ body {
     justify-content: center;
     margin-top: 100px;
     display: flex;
-
 }
-
 .navbar img {
     height: 50px;
     width: 50px;
     margin-top: 10px;
     transition: 0.4s;
 }
-
 .navbar img:hover {
     transform: scale(1.2);
     cursor: pointer;
 }
-
 .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
 .navbar button {
     margin-left: 10px;
     border-radius: 15px;
@@ -45,28 +39,23 @@ body {
     transition: 0.5s;
     font-weight: bold;
 }
-
 .buttons button:hover {
     background-color: #3b6161;
     transform: scale(1.09);
     cursor: pointer;
 }
-
 .navbar button:nth-last-child(5) {
     margin-left: 70px;
 }
-
 .buttons button:last-child:hover {
     transform: scale(1.09);
     cursor: pointer;
     background-color: rgba(199, 29, 29, 0.87);
 }
-
 .buttons button:last-child {
     margin-left: 400px;
     background-color: rgb(233, 39, 39);
 }
-
 .detalhesProduto {
     border-radius: 15px;
     background-color: #8896AB;
@@ -79,12 +68,10 @@ body {
     justify-content: center;
     color: white;
 }
-
 h2,
 p {
     font-size: 1.5rem;
 }
-
 .detalhesProduto button {
     background-color: rgba(255, 0, 0, 0.726);
     margin-left: 950px;
@@ -96,13 +83,11 @@ p {
     font-weight: bold;
     transition: 0.4s;
 }
-
 .detalhesProduto button:hover {
     cursor: pointer;
     background-color: rgba(182, 17, 17, 0.726);
     transform: scale(1.1);
 }
-
 .tabelaProdutos {
     border-radius: 15px;
     position: absolute;
@@ -116,7 +101,6 @@ p {
     overflow: auto;
   
 }
-
 table {
     border-collapse: collapse;
     border: 2px solid black;
@@ -132,7 +116,6 @@ table {
     overflow: scroll;
     flex: 1;
 }
-
 .filtro1{
     margin-top: 60px;
     margin-left: 50px;
@@ -140,26 +123,21 @@ table {
     width: 20rem;
     height: 4.2rem;
     background-color: #8896AB;
-    background-color: #8896AB;
     display: flex;
     border-radius: 15px;
     transition: 0.4s;
     border: none;
-    border: none;
 }
-
 .filtro1:hover{
     transition: 0.4s;
     background-color: #5a8b7a;
     transform: scale(0.98);
     cursor: pointer;
 }
-
 .filtro2{
     margin-top: 60px;
     margin-left: 50px;
     color: white;
-    background-color: #8896AB;
     background-color: #8896AB;
     width: 20rem;
     height: 4.2rem;
@@ -167,28 +145,22 @@ table {
     border-radius: 15px;
     transition: 0.4s;
     border: none;
-    border: none;
 }
-
 .filtro2:hover{
     transition: 0.4s;
     background-color: #5a8b7a;
     transform: scale(0.98);
     cursor: pointer;
 }
-
 .txtProdutosVendidos{
     margin-left: 10px;
     margin-top: 22px;
 }
-
 .iconProdutosVendidos{
     width: 60px;
     border-radius: 15px;
     padding: 2px;
 }
-
-
 #pesquisa {
     display: flex;
     flex-direction: column;
@@ -198,50 +170,41 @@ table {
     width: 300px;
     height: 300px;
     font-size: 1.3rem;
-
 }
-
 .filtros {
     
     border-radius: 10px;
     border: none;
     width: 10rem;
     height: 2rem;
-
 }
-
 .select2-container--default .select2-selection--single {
     border-radius: 8px;
     /* Arredonda as bordas do Select2 */
     border: 1px solid #ccc;
     /* Adiciona uma borda opcional */
 }
-
 .select2-container--default .select2-selection--single .select2-selection__rendered {
    
     /* Adiciona algum preenchimento interno */
     font-size: 1.3rem;
     /* Ajusta o tamanho da fonte */
 }
-
 .select2-container--default .select2-results__option {
     border-radius: 8px;
     /* Arredonda as bordas das opções */
     
     /* Adiciona algum preenchimento interno */
 }
-
 #filtros option {
     border-radius: 10px;
 }
-
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 200px;
 }
-
 .chart {
     width: 650px;
     padding: 2rem;
@@ -250,10 +213,10 @@ table {
     background: #c1d7ff;
     margin-bottom: 30px;
 }
-
 .chart2 {
     width: 250px;
     padding: 2rem;
+    margin-left: 5rem;
     margin-left: 3rem;
     margin-top: 2rem;
     border: 3px solid #5a8b7a;
@@ -278,5 +241,5 @@ table {
 
 @font-face {
     font-family: Roboto_Slab;
-    src: url('../fonts/RobotoSlab-Regular.ttf');
+    src: url(/fonts/RobotoSlab-Regular.ttf);
 }
