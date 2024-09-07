@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório das vendas</title>
-    <link rel="stylesheet" href="/css/relatorio.css">
+    <link rel="stylesheet" href="../css/relatorio.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="navbar">
-        <img src="/imgs/macedopng.png" alt="placeholder">
+        <img src="../imgs/macedopng.png" alt="placeholder">
         <div class="buttons">
             <button>Registrar Produto</button>
             <button>Aplicar Desconto</button>
@@ -27,16 +27,21 @@
             <div id="pesquisa">
                 <label for="example_select">Pesquisar por:</label>
                 <select id="example_select" style="width: 200px;">
+                <label for="example_select">Pesquisar por:</label>
+                <select id="example_select" style="width: 200px;">
                     <option value="mes">Mês</option>
                     <option value="semana">Semana</option>
                     <option value="dia">Dia</option>
                 </select>
+                
                 
             </div>
             <div class="container">
                 <div class="chart">
                     <canvas id="barchart"></canvas>
                 </div>
+                
+                
                 
                 
             </div>
@@ -55,6 +60,8 @@
         <button class="filtro2" id="filtro2" onclick="showChart3()" >
             <img class="iconProdutosVendidos" src="/imgs/comissao.png" alt="">
             <h3 class="txtProdutosVendidos">Todas as vendas</h3>
+        </button>
+        
         </button>
         
     </div>

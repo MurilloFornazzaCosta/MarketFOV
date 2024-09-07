@@ -2,7 +2,7 @@ body {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-image: url('/imgs/Background.png');
+    background-image: url('../imgs/Background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -42,5 +42,5 @@ body {
 
 @font-face {
     font-family: Roboto_Slab;
-    src: url(/fonts/RobotoSlab-Regular.ttf);
+    src: url('../fonts/RobotoSlab-Regular.ttf');
 }

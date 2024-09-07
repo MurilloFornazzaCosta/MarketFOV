@@ -140,9 +140,11 @@ table {
     width: 20rem;
     height: 4.2rem;
     background-color: #8896AB;
+    background-color: #8896AB;
     display: flex;
     border-radius: 15px;
     transition: 0.4s;
+    border: none;
     border: none;
 }
 
@@ -158,11 +160,13 @@ table {
     margin-left: 50px;
     color: white;
     background-color: #8896AB;
+    background-color: #8896AB;
     width: 20rem;
     height: 4.2rem;
     display: flex;
     border-radius: 15px;
     transition: 0.4s;
+    border: none;
     border: none;
 }
 
@@ -274,5 +278,5 @@ table {
 
 @font-face {
     font-family: Roboto_Slab;
-    src: url(/fonts/RobotoSlab-Regular.ttf);
+    src: url('../fonts/RobotoSlab-Regular.ttf');
 }
