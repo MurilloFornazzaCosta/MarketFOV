@@ -43,6 +43,7 @@ fetchVendas();
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     selectElement.value = 'mes';
     label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -83,7 +84,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 let contador = 0;
+
+// Função para agrupar datas por mês
+function agruparPorMes(datas) {
+    const agrupadasPorMes = {};
+
+    datas.forEach(data => {
+        const dateObj = new Date(data);
+        const mes = dateObj.getMonth(); // getMonth retorna o mês (0 para Janeiro, 1 para Fevereiro, etc.)
+
+        // Se o mês ainda não existe no objeto, cria um array para armazenar as datas
+        if (!agrupadasPorMes[mes]) {
+            agrupadasPorMes[mes] = [];
+        }
+
+        // Adiciona a data ao array do respectivo mês
+        agrupadasPorMes[mes].push(data);
+    });
+
+    return agrupadasPorMes;
+}
+
+// Extrai apenas as datas de 'vendas'
+const dataVendas = vendas.map(venda => venda.dataVenda);
+
+// Chama a função e exibe o resultado
+let vendasPorMes = agruparPorMes(datasVendas);
+console.log(vendasPorMes);
+
 selectElement.addEventListener("change", function () {
+
+    
+
     // for (let index = 0; index < datasVendas.length; index++) {
 
     //     datasVendas[index] = datasVendas[index - 1];

@@ -4,12 +4,12 @@ body {
 }
 .navbar {
     background-color: #8896AB;
-    width: 65%;
+    width: 63.8%;
     height: 73px;
     border-radius: 15px;
-    justify-content: center;
     margin-top: 100px;
     display: flex;
+    padding-left: 20px;
 }
 .navbar img {
     height: 50px;
@@ -47,20 +47,12 @@ body {
 .navbar button:nth-last-child(5) {
     margin-left: 70px;
 }
-.buttons button:last-child:hover {
-    transform: scale(1.09);
-    cursor: pointer;
-    background-color: rgba(199, 29, 29, 0.87);
-}
-.buttons button:last-child {
-    margin-left: 400px;
-    background-color: rgb(233, 39, 39);
-}
+
 .detalhesProduto {
     border-radius: 15px;
     background-color: #8896AB;
     width: 65%;
-    height: 550px;
+    height: 577px;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
@@ -94,8 +86,8 @@ p {
     top: 100px;
     right: 2%;
     background-color: #8896AB;
-    width: 600px;
-    height: 823.35px;
+    width: 550px;
+    height: 700px;
     max-height: 823.35px;
     /* Ajuste a altura conforme necessário */
     overflow: auto;
