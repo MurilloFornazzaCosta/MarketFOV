@@ -8,6 +8,8 @@ let vendas = [];
 let valorVenda;
 var valorDoDia;
 let vendasPorDia = {};
+let vendasPorMes = {};
+let contador = 0;
 
 
 // Função para obter dados do servidor e calcular o valor total de cada venda
@@ -37,14 +39,16 @@ async function fetchVendas() {
 
 }
 
-// Chama a função para obter os dados
-fetchVendas();
-
-
-
+document.addEventListener('DOMContentLoaded', function () {
+    // Chama a função para obter os dados assim que a página for carregada
+    console.log(fetchVendas());
+});
 
 
 document.addEventListener('DOMContentLoaded', function () {
+
+
+
     selectElement.value = 'mes';
     label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
@@ -83,70 +87,58 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-let contador = 0;
 
-// Função para agrupar datas por mês
-function agruparPorMes(datas) {
-    const agrupadasPorMes = {};
 
-    datas.forEach(data => {
-        const dateObj = new Date(data);
-        const mes = dateObj.getMonth(); // getMonth retorna o mês (0 para Janeiro, 1 para Fevereiro, etc.)
-
-        // Se o mês ainda não existe no objeto, cria um array para armazenar as datas
-        if (!agrupadasPorMes[mes]) {
-            agrupadasPorMes[mes] = [];
-        }
-
-        // Adiciona a data ao array do respectivo mês
-        agrupadasPorMes[mes].push(data);
-    });
-
-    return agrupadasPorMes;
-}
-
-// Extrai apenas as datas de 'vendas'
-const dataVendas = vendas.map(venda => venda.dataVenda);
-
-// Chama a função e exibe o resultado
-let vendasPorMes = agruparPorMes(datasVendas);
-console.log(vendasPorMes);
 
 selectElement.addEventListener("change", function () {
 
-    
-
-    // for (let index = 0; index < datasVendas.length; index++) {
-
-    //     datasVendas[index] = datasVendas[index - 1];
-
-    //     valorVenda = totaisDasVendas[index] + totaisDasVendas[index - 1];
-
-    //     console.log(valorVenda);
-    // }
     function somaVendasPorDia() {
-        if (contador == 0) {
-            vendas.forEach(venda => {
-                if (vendasPorDia[venda.dataVenda]) {
-                    vendasPorDia[venda.dataVenda] += venda.totalVenda;
-                } else {
-                    vendasPorDia[venda.dataVenda] = venda.totalVenda
-                }
-            });
+        vendas.forEach(venda => {
+            if (vendasPorDia[venda.dataVenda]) {
+                vendasPorDia[venda.dataVenda] += venda.totalVenda;
+            } else {
+                vendasPorDia[venda.dataVenda] = venda.totalVenda
+            }
+        });
 
-            const results = Object.keys(vendasPorDia).map(data => {
-                return { data: data, totalVenda: vendasPorDia[data] };
-            });
-            contador++;
-            return results;
-        } else {
-        }
+        const results = Object.keys(vendasPorDia).map(data => {
+            return { data: data, totalVenda: vendasPorDia[data] };
+        });
+        return results;
     }
     console.log(somaVendasPorDia());
-    console.log(datasVendas)
-    //valorDoDia = 'ddd';
 
-    console.log(valorDoDia);
+
+    function somaVendasPorMes() {
+
+        vendas.forEach(venda => {
+            // Extrair o mês e o ano da data da venda
+            const data = new Date(venda.dataVenda);
+            const mesAno = `${data.getMonth() + 1}-${data.getFullYear()}`; // Formato MM-YYYY
+
+            if (vendasPorMes[mesAno]) {
+                // Se já houver vendas para esse mês, somar o total da venda atual
+                vendasPorMes[mesAno] += venda.totalVenda;
+            } else {
+                // Se não houver vendas para esse mês, inicializar com o total da venda atual
+                vendasPorMes[mesAno] = venda.totalVenda;
+            }
+        });
+
+        // Converter o objeto vendasPorMes em um array de resultados
+        const results = Object.keys(vendasPorMes).map(mesAno => {
+            return { mesAno: mesAno, totalVenda: vendasPorMes[mesAno] };
+        });
+
+        contador++;
+        return results;
+    }
+
+
+
+    console.log(somaVendasPorMes())
+
+
 
     // Verifica se o gráfico existe e o destrói antes de criar um novo
     if (barchart) {
@@ -173,7 +165,7 @@ selectElement.addEventListener("change", function () {
             labels: '',
             datasets: [{
                 label: '',
-                data: vendasPorDia, // Usa os valores calculados aqui
+                data: vendasPorMes, // Usa os valores calculados aqui
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
