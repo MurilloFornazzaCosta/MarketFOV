@@ -1,3 +1,4 @@
+// Evento de submit do formulário
 document.getElementById('meuFormulario').addEventListener('submit', function (event) {
     let valido = true;
 
@@ -47,19 +48,34 @@ document.getElementById('meuFormulario').addEventListener('submit', function (ev
         valido = false;
     }
 
-    // Se algum campo não for válido, previne o envio do formulário
+    // Se o formulário não for válido, previne o envio
     if (!valido) {
         document.getElementById('erroAoRegistrar').style.display = 'block';
         setTimeout(() => {
             document.getElementById('erroAoRegistrar').style.display = 'none';
         }, 3000);
-        event.preventDefault(); // Previne o envio do formulário se a validação falhar
-    } else {
-        // Exibe imagem de sucesso e permite o envio do formulário
-        document.getElementById('produtoRegistrado').style.display = 'block';
-        setTimeout(() => {
-            document.getElementById('produtoRegistrado').style.display = 'none';
-        }, 3000);
-        // Não chamamos event.preventDefault() aqui para permitir o envio do formulário
+        event.preventDefault();
+        return;
     }
 });
+
+// Exibição de mensagens ao carregar a página
+window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message) {
+        if (message.includes('Erro') || message.includes('obrigatório')) {
+            document.getElementById('erroAoRegistrar').textContent = decodeURIComponent(message);
+            document.getElementById('erroAoRegistrar').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('erroAoRegistrar').style.display = 'none';
+            }, 3000);
+        } else if (message.includes('sucesso')) {
+            document.getElementById('produtoRegistrado').textContent = decodeURIComponent(message);
+            document.getElementById('produtoRegistrado').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('produtoRegistrado').style.display = 'none';
+            }, 3000);
+        }
+    }
+};
