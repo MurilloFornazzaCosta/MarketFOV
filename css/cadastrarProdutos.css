@@ -45,7 +45,55 @@ body {
     transition: 0.5s;
     font-weight: bold;
 }
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
+#button {
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+}
+
+#button:hover {
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+.buttons :nth-last-child(4) {
+    margin-left: 70px;
+}
+
+#btfecharcaixa:hover {
+    transform: scale(1.09);
+    cursor: pointer;
+    background-color: rgba(199, 29, 29, 0.87);
+}
+
+#btfecharcaixa {
+    font-family: Roboto_Slab;
+    border-radius: 15px;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+    margin-left: 530px;
+    color: #ffffff;
+    background-color: rgb(233, 39, 39);
+}
 .buttons button:hover {
     background-color: #3b6161;
     transform: scale(1.09);

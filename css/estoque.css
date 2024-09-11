@@ -89,7 +89,7 @@ body {
     cursor: pointer;
 }
 
-.buttons :nth-last-child(5) {
+.buttons :nth-last-child(4) {
     margin-left: 70px;
 }
 
@@ -108,7 +108,7 @@ body {
     font-size: 1.2rem;
     transition: 0.5s;
     font-weight: bold;
-    margin-left: 400px;
+    margin-left: 530px;
     color: #ffffff;
     background-color: rgb(233, 39, 39);
 }

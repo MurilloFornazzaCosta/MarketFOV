@@ -4,24 +4,114 @@ body {
 }
 .navbar {
     background-color: #8896AB;
-    width: 63.8%;
+    width: 65%;
     height: 73px;
     border-radius: 15px;
+    justify-content: center;
     margin-top: 100px;
     display: flex;
-    padding-left: 20px;
+
 }
+
 .navbar img {
     height: 50px;
     width: 50px;
     margin-top: 10px;
     transition: 0.4s;
+    z-index: 1;
 }
-.navbar img:hover {
+.image-container:hover img{
     transform: scale(1.2);
+    opacity: 0.5;
+}
+.navbar p{
+    font-size: 1rem;
+    position: absolute;
+    left: 31px;
+    top: 100px;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.4s;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.comment-box {
+    position: absolute;
+    bottom: 17%;
+    /* Posiciona acima da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    /* Evita quebra de linha */
+    display: none;
+    /* Inicialmente escondido */
+    z-index: 1;
     cursor: pointer;
+    text-align: center;
+    width: max-content;
+    font-family: Roboto_Slab;
+    font-size: 1.15rem;
+}
+.image-container:hover .comment-box {
+    display: block;
+    /* Exibe o comentário ao passar o mouse */
 }
 .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#button {
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: #5a8b8a;
+    color: #ffffff;
+    font-family: Roboto_Slab;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+}
+
+#button:hover {
+    background-color: #3b6161;
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+.buttons :nth-last-child(4) {
+    margin-left: 70px;
+}
+
+#btfecharcaixa:hover {
+    transform: scale(1.09);
+    cursor: pointer;
+    background-color: rgba(199, 29, 29, 0.87);
+}
+
+#btfecharcaixa {
+    font-family: Roboto_Slab;
+    border-radius: 15px;
+    width: 120px;
+    height: 50px;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.5s;
+    font-weight: bold;
+    margin-left: 530px;
+    color: #ffffff;
+    background-color: rgb(233, 39, 39);
+}
+/* .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,7 +136,7 @@ body {
 }
 .navbar button:nth-last-child(5) {
     margin-left: 70px;
-}
+} */
 
 .detalhesProduto {
     border-radius: 15px;
