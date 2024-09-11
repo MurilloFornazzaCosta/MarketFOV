@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: cadastro.php?message=" . urlencode($message));
         exit;
     } else {
-        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "MarketFOV");
+        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "marketfov3");
         $insere = $conn->prepare("INSERT INTO mercados VALUES (?, ?, ?, ?, ?, ?)");
         $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $login);
         if ($insere->execute()) {

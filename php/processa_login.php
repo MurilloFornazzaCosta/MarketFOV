@@ -1,9 +1,9 @@
 <?php
+session_start();
 $servername = "ESN509VMYSQL";
 $username = "aluno";
 $password = "Senai1234";
-$dbname = "MarketFOV";
-$senhateste = 'a';
+$dbname = "marketfov3";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -32,28 +32,30 @@ if ($results->num_rows > 0) {
 
 $leitor->close();
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cnpj = htmlspecialchars(trim($_POST['cnpj']));
     $senha = htmlspecialchars(trim($_POST['senha']));
 
     $authenticated = false;
     foreach ($mercados as $m) {
-        if ($m['cnpj'] === $cnpj && $senha === $senhateste) { // Replace with appropriate password validation
+        if ($m['cnpj'] === $cnpj && $senha === $m['senha']) {
             $authenticated = true;
+            $_SESSION['mercadoLogado'] = $m;
             break;
         }
     }
 
     if ($authenticated) {
-        header('Location: /MarketFOV-Sprint/html/fazerCompras.html');
+        header('Location: /MarketFOV/html/fazerCompras.html');
         exit();
     } else {
         $message = 'CNPJ ou Senha Inválidos, tente novamente!';
-        header("Location: /MarketFOV-Sprint/html/login.php?message=" . urlencode($message));
+        header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
         exit();
     }
 }
 
 // Close connection
 $conn->close();
-?>

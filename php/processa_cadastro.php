@@ -87,16 +87,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         $login = null;
-        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "MarketFOV");
+        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "marketfov3");
         $insere = $conn->prepare("INSERT INTO mercados VALUES (?, ?, ?, ?, ?, ?)");
         $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $login);
         if ($insere->execute()) {
             $message = "Cadastro realizado com sucesso!";
         }
-        header("Location: /MarketFOV-Sprint/html/cadastro.php?message=" . urlencode($message) . "&success=true");
+        header("Location: /MarketFOV/html/cadastro.php?message=" . urlencode($message) . "&success=true");
         exit;
     }
 } else {
-    header("Location: /MarketFOV-Sprint/html/cadastro.php");
+    header("Location: /MarketFOV/html/cadastro.php");
     exit;
 }
