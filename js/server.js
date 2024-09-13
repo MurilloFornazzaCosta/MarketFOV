@@ -13,7 +13,7 @@ const conn = mysql.createConnection({
     host: 'ESN509VMYSQL', // ou '127.0.0.1'
     user: 'aluno',
     password: 'Senai1234',
-    database: 'marketfov'
+    database: 'marketfov4'
 });
 
 // Conectar ao banco de dados
