@@ -42,6 +42,7 @@ async function fetchVendas() {
 document.addEventListener('DOMContentLoaded', function () {
     // Chama a função para obter os dados assim que a página for carregada
     console.log(fetchVendas());
+    console.log(datasVendas);
 });
 
 
@@ -89,51 +90,66 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function somaVendasPorDia() {
+    const vendasPorDia = {};
+    vendas.forEach(venda => {
+        if (vendasPorDia[venda.dataVenda]) {
+            vendasPorDia[venda.dataVenda] += venda.totalVenda;
+        } else {
+            vendasPorDia[venda.dataVenda] = venda.totalVenda
+        }
+    });
+
+    const results = Object.keys(vendasPorDia).map(data => {
+        return { data: data, totalVenda: vendasPorDia[data] };
+    });
+    return results;
+}
+
 
 selectElement.addEventListener("change", function () {
 
-    function somaVendasPorDia() {
-        vendas.forEach(venda => {
-            if (vendasPorDia[venda.dataVenda]) {
-                vendasPorDia[venda.dataVenda] += venda.totalVenda;
-            } else {
-                vendasPorDia[venda.dataVenda] = venda.totalVenda
-            }
-        });
-
-        const results = Object.keys(vendasPorDia).map(data => {
-            return { data: data, totalVenda: vendasPorDia[data] };
-        });
-        return results;
-    }
+    
     console.log(somaVendasPorDia());
 
 
     function somaVendasPorMes() {
-
+        const vendasPorMes = {}; // Inicializa o objeto para armazenar as vendas por mês
+    
         vendas.forEach(venda => {
-            // Extrair o mês e o ano da data da venda
-            const data = new Date(venda.dataVenda);
-            const mesAno = `${data.getMonth() + 1}-${data.getFullYear()}`; // Formato MM-YYYY
-
-            if (vendasPorMes[mesAno]) {
-                // Se já houver vendas para esse mês, somar o total da venda atual
-                vendasPorMes[mesAno] += venda.totalVenda;
+            // Verifica se a propriedade 'dataVenda' está definida e é uma string
+            if (venda.dataVenda && typeof venda.dataVenda === 'string') {
+                // Extrair o mês e o ano manualmente da string de data 'YYYY-MM-DD'
+                const partesData = venda.dataVenda.split('-'); // Quebra a string em [YYYY, MM, DD]
+                const ano = partesData[0];
+                const mes = partesData[1];
+    
+                const mesAno = `${mes}-${ano}`; // Formato MM-YYYY
+    
+                if (vendasPorMes[mesAno]) {
+                    // Se já houver vendas para esse mês, somar o total da venda atual
+                    vendasPorMes[mesAno] += venda.totalVenda;
+                } else {
+                    // Se não houver vendas para esse mês, inicializar com o total da venda atual
+                    vendasPorMes[mesAno] = venda.totalVenda;
+                }
             } else {
-                // Se não houver vendas para esse mês, inicializar com o total da venda atual
-                vendasPorMes[mesAno] = venda.totalVenda;
+                console.error('Data inválida para venda:', venda);
             }
         });
-
+    
         // Converter o objeto vendasPorMes em um array de resultados
         const results = Object.keys(vendasPorMes).map(mesAno => {
             return { mesAno: mesAno, totalVenda: vendasPorMes[mesAno] };
         });
-
-        contador++;
+    
+        contador++; // Certifique-se de que o contador é global e inicializado
         return results;
     }
-
+    
+    
+    
+    
 
 
     console.log(somaVendasPorMes())
