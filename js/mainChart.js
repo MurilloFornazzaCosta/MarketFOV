@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     selectElement.value = 'mes';
-    label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    label = ['Janeir', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
     barchart = new Chart(ctx, {
         type: 'bar',
