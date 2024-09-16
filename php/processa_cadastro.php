@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         $login = null;
-        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "marketfov3");
+        $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "marketfov4");
         $insere = $conn->prepare("INSERT INTO mercados VALUES (?, ?, ?, ?, ?, ?)");
         $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $login);
         if ($insere->execute()) {
