@@ -5,6 +5,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
     header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
     exit();
 }
+var_dump($_SESSION['mercadoLogado']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +33,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
             <a href="../html/relatorio.html"><button id="button">Relatório de vendas</button></a>
-            <a href="../html/estoque.html"><button id="button">Estoque</button></a>
+            <a href="../html/estoque.php"><button id="button">Estoque</button></a>
             <a href="../html/fazerCompras.html"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
     </div>

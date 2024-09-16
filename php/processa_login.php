@@ -3,7 +3,7 @@ session_start();
 $servername = "ESN509VMYSQL";
 $username = "aluno";
 $password = "Senai1234";
-$dbname = "marketfov3";
+$dbname = "marketfov4";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

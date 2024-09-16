@@ -2,7 +2,7 @@
 session_start();
 $message;
 //cria conexão com banco de dados
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov3');
+$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
 if (isset($_SESSION['mercadoLogado'])) {
     $mercadoLogado = $_SESSION['mercadoLogado'];
 }
