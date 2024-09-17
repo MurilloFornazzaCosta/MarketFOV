@@ -2,6 +2,7 @@ const ctx = document.getElementById('barchart').getContext('2d');
 const selectElement = document.getElementById('example_select');
 let barchart;
 let label;
+let dados = [];
 let totaisDasVendas = []; // Para armazenar o valor total de cada venda
 let datasVendas = [];
 let vendas = [];
@@ -9,6 +10,8 @@ let valorVenda;
 var valorDoDia;
 let vendasPorDia = {};
 let vendasPorMes = {};
+let arrayMeses = ['01-2024', '02-2024', '03-2024', '04-2024', '05-2024', '06-2024', '07-2024', '08-2024', '09-2024', '10-2024', '11-2024', '12-2024'];
+let dadosVendasMes = [0,0,0,0,0,0,0,0,0,0,0,0];
 let contador = 0;
 
 
@@ -168,6 +171,24 @@ selectElement.addEventListener("change", function () {
 
     if (selectElement.value == "mes") {
         label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        
+        const meses = somaVendasPorMes().map(item => item.mesAno);
+        console.log(meses);
+
+        for (let i = 0; i < meses.length; i++) {
+            for (let i2 = 0; i2 < arrayMeses.length; i2++) {
+                if (meses[i] == arrayMeses[i2]) {
+                    dadosVendasMes[i2] = somaVendasPorMes().map(item => item.totalVenda)[i];
+                }
+                
+            }
+                
+        }
+
+        dados = dadosVendasMes;
+        console.log(dadosVendasMes);
+        //console.log(somaVendasPorMes().map(item => item.totalVenda));
+
     }
 
     if (selectElement.value == "dia") {
@@ -178,10 +199,10 @@ selectElement.addEventListener("change", function () {
     barchart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: '',
+            labels: label,
             datasets: [{
                 label: '',
-                data: vendasPorMes, // Usa os valores calculados aqui
+                data: dados, // Usa os valores calculados aqui
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
