@@ -11,6 +11,7 @@ var valorDoDia;
 let vendasPorDia = {};
 let vendasPorMes = {};
 let arrayMeses = ['01-2024', '02-2024', '03-2024', '04-2024', '05-2024', '06-2024', '07-2024', '08-2024', '09-2024', '10-2024', '11-2024', '12-2024'];
+let dadosVendasDias = [0,0,0,0,0,0,0]
 let dadosVendasMes = [0,0,0,0,0,0,0,0,0,0,0,0];
 let contador = 0;
 
@@ -116,6 +117,7 @@ selectElement.addEventListener("change", function () {
     console.log(somaVendasPorDia());
 
 
+
     function somaVendasPorMes() {
         const vendasPorMes = {}; // Inicializa o objeto para armazenar as vendas por mês
     
@@ -192,7 +194,28 @@ selectElement.addEventListener("change", function () {
     }
 
     if (selectElement.value == "dia") {
-        label = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];
+        label = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+        const dias = somaVendasPorDia().map(item => item.data);
+        console.log(dias + 'testeeee');
+
+        for (let i = 0; i < dias.length; i++) {
+
+            const diaSemanaObj = new Date(dias[i]);
+            const diaSemana = diaSemanaObj.getDay();
+            console.log(label[diaSemana] + 'teste');
+
+
+            for (let i2 = 0; i2 < label.length; i2++) {
+                if (label[diaSemana] == label[i2]) {
+                    dadosVendasDias[i2] = somaVendasPorDia().map(item => item.totalVenda)[i];
+                }    
+            }
+            
+        }
+
+        dados = dadosVendasDias;
+        console.log(dadosVendasDias);
+
     }
 
     // Recria o gráfico com os novos labels e os valores já calculados
