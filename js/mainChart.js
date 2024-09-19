@@ -13,6 +13,7 @@ let vendasPorMes = {};
 let arrayMeses = ['01-2024', '02-2024', '03-2024', '04-2024', '05-2024', '06-2024', '07-2024', '08-2024', '09-2024', '10-2024', '11-2024', '12-2024'];
 let dadosVendasDias = [0,0,0,0,0,0,0]
 let dadosVendasMes = [0,0,0,0,0,0,0,0,0,0,0,0];
+let dadosVendasSemanas = [0,0,0,0];
 let contador = 0;
 
 
@@ -166,9 +167,81 @@ selectElement.addEventListener("change", function () {
         barchart.destroy();
     }
 
+    function getNumeroSemana(data) {
+        const dataObj = new Date(data);
+        const primeiroDiaDoAno = new Date(dataObj.getFullYear(), 0, 1);
+        const diasPassados = Math.floor((dataObj - primeiroDiaDoAno) / (24 * 60 * 60 * 1000));
+        
+        // Calcula o número da semana, considerando o primeiro dia do ano como semana 1
+        return Math.ceil((diasPassados + primeiroDiaDoAno.getDay() + 1) / 7);
+    }
+
     // Define os labels com base na opção selecionada
     if (selectElement.value == "semana") {
         label = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'];
+        const dias = somaVendasPorDia().map(item => item.data);
+
+        function getNumeroSemanaDoMes(data) {
+            const dataObj = new Date(data);
+            const diaDoMes = dataObj.getDate(); // Obtém o dia do mês
+        
+            // Ajusta o cálculo para que a semana do mês seja calculada corretamente
+            const semanaDoMes = Math.ceil(diaDoMes / 7); // Dividindo o dia do mês por 7 para determinar a semana do mês
+        
+            return 'Semana ' + semanaDoMes; // Retorna o número da semana dentro do mês
+        }
+        
+        function obterDatasPorSemanaDoMes(datas) {
+            const hoje = new Date();
+            const mesAtual = hoje.getMonth(); // Obtém o mês atual (0 para Janeiro, 11 para Dezembro)
+            const anoAtual = hoje.getFullYear(); // Obtém o ano atual
+            
+            // Filtro para pegar apenas as datas que são do mês e ano atual
+            const datasDoMesAtual = datas.filter(data => {
+                const dataObj = new Date(data);
+                return dataObj.getMonth() === mesAtual && dataObj.getFullYear() === anoAtual;
+            });
+        
+            // Objeto para armazenar as semanas e suas respectivas datas
+            const semanasDoMes = {};
+        
+            // Itera sobre as datas do mês atual
+            datasDoMesAtual.forEach(data => {
+                const semanaRelativa = getNumeroSemanaDoMes(data); // Calcula a semana relativa do mês
+                if (!semanasDoMes[semanaRelativa]) {
+                    semanasDoMes[semanaRelativa] = []; // Cria um array vazio para a semana, se não existir
+                }
+                semanasDoMes[semanaRelativa].push(data); // Adiciona a data à semana correspondente
+            });
+        
+            return semanasDoMes;
+        }
+        
+        // Exemplo de uso
+        const datas = [
+            "2024-08-01", "2024-08-02", "2024-08-03", "2024-09-13", 
+            "2024-09-17", "2024-09-18", "2024-09-19"
+        ];
+
+        for (let i = 0; i < label.length; i++) {
+            for (let i2 = 0; i2 < array.length; i2++) {
+                if (Object.keys(obterDatasPorSemanaDoMes(dias)) == label[i]) {
+                    
+                } else {
+                    
+                }
+                
+            }
+            
+        }
+
+
+        
+        const semanas = obterDatasPorSemanaDoMes(dias);
+        console.log(semanas);
+        
+        console.log(dias);
+
     }
 
     if (selectElement.value == "mes") {
@@ -196,7 +269,30 @@ selectElement.addEventListener("change", function () {
     if (selectElement.value == "dia") {
         label = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
         const dias = somaVendasPorDia().map(item => item.data);
-        console.log(dias + 'testeeee');
+        console.log(dias + ' = dias');
+
+        
+        function mesmaSemana(data) {
+            const hoje = new Date();
+            
+            // Obtém número da semana e ano da data fornecida
+            const numeroSemanaData = getNumeroSemana(data);
+            const anoData = new Date(data).getFullYear();
+            
+            // Obtém número da semana e ano da data atual
+            const numeroSemanaAtual = getNumeroSemana(hoje);
+            const anoAtual = hoje.getFullYear();
+            
+            // Verifica se é a mesma semana e o mesmo ano
+            return numeroSemanaData === numeroSemanaAtual && anoData === anoAtual;
+        }
+        
+        // Exemplo de uso
+
+        
+        //const dataExemplo = ;  // Substitua por qualquer data
+        //console.log(mesmaSemana(dataExemplo));  // true ou false
+        
 
         for (let i = 0; i < dias.length; i++) {
 
@@ -204,16 +300,21 @@ selectElement.addEventListener("change", function () {
             const diaSemana = diaSemanaObj.getDay();
             console.log(label[diaSemana] + 'teste');
 
-
-            for (let i2 = 0; i2 < label.length; i2++) {
-                if (label[diaSemana] == label[i2]) {
-                    dadosVendasDias[i2] = somaVendasPorDia().map(item => item.totalVenda)[i];
-                }    
+            if (mesmaSemana(dias[i])) {
+                console.log('true');
+                for (let i2 = 0; i2 < label.length; i2++) {
+                    if (label[diaSemana] == label[i2]) {
+                        dadosVendasDias[i2] = somaVendasPorDia().map(item => item.totalVenda)[i];
+                    }    
+                }
+                dados = dadosVendasDias;
+            } else {
+                console.log('false');
             }
             
         }
 
-        dados = dadosVendasDias;
+        
         console.log(dadosVendasDias);
 
     }
