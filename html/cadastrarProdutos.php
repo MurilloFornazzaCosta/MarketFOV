@@ -5,7 +5,6 @@ if (!isset($_SESSION['mercadoLogado'])) {
     header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
     exit();
 }
-var_dump($_SESSION['mercadoLogado']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
