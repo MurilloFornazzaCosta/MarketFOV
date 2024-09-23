@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($authenticated) {
-        header('Location: /MarketFOV/html/fazerCompras.html');
+        header('Location: /MarketFOV/html/fazerCompras.php');
         exit();
     } else {
         $message = 'CNPJ ou Senha Inválidos, tente novamente!';
