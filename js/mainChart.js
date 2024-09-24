@@ -114,8 +114,21 @@ function somaVendasPorDia() {
 
 selectElement.addEventListener("change", function () {
 
+    function filtrarVendasMesAtual(vendas) {
+        const hoje = new Date(); // Obtém a data atual
+        const mesAtual = hoje.getMonth(); // Obtém o mês atual (0 para Janeiro, 11 para Dezembro)
+        const anoAtual = hoje.getFullYear(); // Obtém o ano atual
     
-    console.log(somaVendasPorDia());
+        // Filtrar as vendas que ocorreram no mês e ano atual
+        return vendas.filter(venda => {
+            const dataVenda = new Date(venda.data); // Corrige para acessar a propriedade 'data'
+            return dataVenda.getMonth() === mesAtual && dataVenda.getFullYear() === anoAtual;
+        });
+    }
+    
+
+    
+    console.log();
 
 
 
@@ -152,11 +165,7 @@ selectElement.addEventListener("change", function () {
         contador++; // Certifique-se de que o contador é global e inicializado
         return results;
     }
-    
-    
-    
-    
-
+        
 
     console.log(somaVendasPorMes())
 
@@ -216,31 +225,65 @@ selectElement.addEventListener("change", function () {
         
             return semanasDoMes;
         }
+
+        function somaVendasPorSemana(vendas) {
+            const vendasPorSemana = {}; // Objeto para armazenar as vendas por semana
         
-        // Exemplo de uso
-        const datas = [
-            "2024-08-01", "2024-08-02", "2024-08-03", "2024-09-13", 
-            "2024-09-17", "2024-09-18", "2024-09-19"
-        ];
+            vendas.forEach(venda => {
+                if (venda.data && typeof venda.data === 'string') {
+                    // Extrair o número da semana da data da venda
+                    const semana = getNumeroSemanaDoMes(venda.data);
+                    
+                    if (vendasPorSemana[semana]) {
+                        // Se já houver vendas para essa semana, somar o total da venda atual
+                        vendasPorSemana[semana] += venda.totalVenda;
+                    } else {
+                        // Se não houver vendas para essa semana, inicializar com o total da venda atual
+                        vendasPorSemana[semana] = venda.totalVenda;
+                    }
+                } else {
+                    console.error('Data inválida para venda:', venda);
+                }
+            });
+        
+            // Converter o objeto vendasPorSemana em um array de resultados
+            const resultados = Object.keys(vendasPorSemana).map(semana => {
+                return { semana: semana, totalVenda: vendasPorSemana[semana] };
+            });
+        
+            return resultados;
+        }
+    
+        console.log(somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())));
+        
+
+        const semanas = obterDatasPorSemanaDoMes(dias);
 
         for (let i = 0; i < label.length; i++) {
-            for (let i2 = 0; i2 < array.length; i2++) {
-                if (Object.keys(obterDatasPorSemanaDoMes(dias)) == label[i]) {
-                    
+            
+            for (let i2 = 0; i2 < somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).length; i2++) {
+                if (somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).map(item => item.semana)[i2] == label[i]) {
+                    console.log('teste certo');
+                    dadosVendasSemanas[i] = somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).map(item => item.totalVenda)[i2];
                 } else {
-                    
-                }
+                    console.log('teste errado');
+
+                } 
                 
             }
             
         }
 
+        dados = dadosVendasSemanas;
+        console.log(dadosVendasSemanas);
+        console.log(label);
+
 
         
-        const semanas = obterDatasPorSemanaDoMes(dias);
+        
         console.log(semanas);
         
-        console.log(dias);
+        //console.log(dias);
 
     }
 
@@ -307,14 +350,14 @@ selectElement.addEventListener("change", function () {
                         dadosVendasDias[i2] = somaVendasPorDia().map(item => item.totalVenda)[i];
                     }    
                 }
-                dados = dadosVendasDias;
+                
             } else {
                 console.log('false');
             }
             
         }
 
-        
+        dados = dadosVendasDias;
         console.log(dadosVendasDias);
 
     }
