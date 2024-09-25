@@ -4,6 +4,8 @@ if (!isset($_SESSION['mercadoLogado'])) {
     $message = 'FAÇA LOGIN PARA ACESSAR ESSA PÁGINA!';
     header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
     exit();
+} else {
+    $mercadoLogado = $_SESSION['mercadoLogado'];
 }
 ?>
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produtos</title>
-    <link rel="stylesheet" href="../css/cadastrarProdutos.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <script src="../js/fazercompras.js"></script>
     <style>
         /* Adicione estilos básicos para as imagens */
@@ -23,17 +25,24 @@ if (!isset($_SESSION['mercadoLogado'])) {
             /* Inicialmente, as imagens estão ocultas */
         }
     </style>
+    <link rel="stylesheet" href="../css/cadastrarProdutos.css">
+
 </head>
 
 <body>
 
     <div class="navbar">
-        <img src="../imgs/macedopng.png" alt="placeholder">
+        <div class="image-container">
+            <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
+            <div class="comment-box" id="comment-box">
+                <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">Alterar<br>Dados</a>
+            </div>
+        </div>
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
             <a href="../html/relatorio.html"><button id="button">Relatório de vendas</button></a>
             <a href="../html/estoque.php"><button id="button">Estoque</button></a>
-            <a href="../html/fazerCompras.html"><button id="btfecharcaixa">Realizar Compra</button></a>
+            <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
     </div>
     <main>
