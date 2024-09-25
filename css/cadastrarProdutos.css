@@ -19,31 +19,49 @@ body {
     width: 50px;
     margin-top: 10px;
     transition: 0.4s;
+    z-index: 1;
 }
-
-.navbar img:hover {
+.image-container:hover img{
     transform: scale(1.2);
+    opacity: 0.5;
+}
+.navbar p{
+    font-size: 1rem;
+    position: absolute;
+    left: 31px;
+    top: 100px;
+    text-align: center;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.4s;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.comment-box {
+    position: absolute;
+    bottom: 17%;
+    /* Posiciona acima da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    /* Evita quebra de linha */
+    display: none;
+    /* Inicialmente escondido */
+    z-index: 1;
     cursor: pointer;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.navbar button {
-    margin-left: 10px;
-    border-radius: 15px;
-    background-color: #5a8b8a;
-    color: #ffffff;
+    text-align: center;
+    width: max-content;
     font-family: Roboto_Slab;
-    width: 120px;
-    height: 50px;
-    border: none;
-    font-size: 1.2rem;
-    transition: 0.5s;
-    font-weight: bold;
+    font-size: 1.15rem;
+}
+.image-container:hover .comment-box {
+    display: block;
+    /* Exibe o comentário ao passar o mouse */
 }
 .buttons {
     display: flex;
@@ -94,27 +112,6 @@ body {
     color: #ffffff;
     background-color: rgb(233, 39, 39);
 }
-.buttons button:hover {
-    background-color: #3b6161;
-    transform: scale(1.09);
-    cursor: pointer;
-}
-
-.navbar button:nth-last-child(5) {
-    margin-left: 70px;
-}
-
-.buttons button:last-child:hover {
-    transform: scale(1.09);
-    cursor: pointer;
-    background-color: rgba(199, 29, 29, 0.87);
-}
-
-.buttons button:last-child {
-    margin-left: 400px;
-    background-color: rgb(233, 39, 39);
-}
-
 .detalhesProduto {
     border-radius: 15px;
     background-color: #8896AB;
@@ -126,7 +123,7 @@ body {
     color: white;
 }
 
-.registrar{
+.registrar {
     border-radius: 15px;
     background-color: #5a8b8a;
     color: #ffffff;
@@ -140,9 +137,11 @@ body {
     margin-left: 2rem;
     transition: 0.5s;
 }
-.error{
+
+.error {
     color: red;
 }
+
 .registrar:hover {
     background-color: #3b6161;
     transform: scale(1.09);
@@ -155,7 +154,7 @@ label {
     margin-left: 2rem;
 }
 
-select{
+select {
     margin-left: 2rem;
     border-radius: 10px;
     border: none;
@@ -163,17 +162,19 @@ select{
     height: 2rem;
     font-size: 1rem;
 }
-form{
+
+form {
     margin-top: -2rem;
 }
-input{
+
+input {
     margin-left: 2rem;
     border-radius: 10px;
     border: none;
     width: 20rem;
     height: 2rem;
     font-size: 1rem;
-    
+
 }
 
 h1 {
@@ -195,7 +196,7 @@ h1 {
     max-height: 823.35px;
     /* Ajuste a altura conforme necessário */
     overflow: auto;
-  
+
 }
 
 table {
@@ -226,12 +227,14 @@ td {
     text-align: center;
 
 }
-tfoot{
+
+tfoot {
     position: sticky;
     bottom: 0;
     border: 1px solid black;
     height: 40px;
 }
+
 tbody {
     background-color: #C5D5E4;
     overflow: scroll;
@@ -246,28 +249,33 @@ tfoot th {
 tfoot td {
     font-weight: bold;
 }
+
 @font-face {
     font-family: Roboto_Slab;
     src: url('../fonts/RobotoSlab-Regular.ttf');
 }
 
-#produtoRegistrado{
+#produtoRegistrado {
     width: 277px;
     height: 318px;
     margin-left: 40rem;
     margin-top: -43%;
 }
+
 #erroAoRegistrar {
     width: 0;
     padding: 10px;
-    display: none; /* Inicialmente escondido */
+    display: none;
+    /* Inicialmente escondido */
 }
 
 #produtoRegistrado {
-    display: none; /* Inicialmente escondido */
+    display: none;
+    /* Inicialmente escondido */
     padding: 10px;
 }
-#erroAoRegistrar{
+
+#erroAoRegistrar {
     width: 277px;
     height: 318px;
     margin-left: 40rem;
