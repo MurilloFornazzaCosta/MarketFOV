@@ -27,6 +27,7 @@ $mercados = [];
 if ($results->num_rows > 0) {
     while ($row = $results->fetch_assoc()) {
         $mercados[] = $row;
+        var_dump($row);
     }
 }
 
