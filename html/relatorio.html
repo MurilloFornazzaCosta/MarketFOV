@@ -27,7 +27,7 @@
         </div>
     </div>
     <main>
-        <div class="detalhesProduto">
+        <div class="detalhesProduto" id="detalhesProduto">
             <div id="pesquisa">
                 <label for="example_select">Pesquisar por:</label>
                 <select id="example_select" style="width: 200px;">
@@ -41,8 +41,109 @@
                 <div class="chart">
                     <canvas id="barchart"></canvas>
                 </div>
-
-
+            </div>
+            <h3 id="titleTabela" >Tabela de vendas</h3>
+            <div style="max-height: 300px; overflow-y: auto; margin-bottom: 50px;">
+                <table id="tabelaVendas">
+                    <thead>
+                      <tr>
+                        <th scope="col">Cupom</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">CPF do cliente</th>
+                        <th scope="col">im</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">ie</th>
+                        <th scope="col">Total da venda</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Chris</th>
+                        <td>HTML tables</td>
+                        <td>22</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Dennis</th>
+                        <td>Web accessibility</td>
+                        <td>45</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Sarah</th>
+                        <td>JavaScript frameworks</td>
+                        <td>29</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Karen</th>
+                        <td>Web performance</td>
+                        <td>36</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">cupom6</th>
+                        <td>30/09/2024</td>
+                        <td>111.111.111-11</td>
+                        <td>im1</td>
+                        <td>111.111.1111/11</td>
+                        <td>ie1</td>
+                        <td>R$300</td>
+                      </tr>
+                
+                
+                    </tbody>
+                  </table>
             </div>
         </div>
     </main>
@@ -54,10 +155,12 @@
 
         </button>
 
-        <button class="filtro2" id="filtro2" onclick="showChart3()">
+        <button class="filtro2" id="filtro2" onclick="showVendas()">
             <img class="iconProdutosVendidos" src="../imgs/comissao.png" alt="">
             <h3 class="txtProdutosVendidos">Todas as vendas</h3>
         </button>
+
+        
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>

@@ -73,3 +73,17 @@ function showChart3() {
         }
     });
 }
+
+
+function showVendas() {
+
+    var divLista = document.getElementById('detalhesProduto');
+    var tabelaVendas = document.getElementById('tabelaVendas');
+    var chart = document.querySelector('.chart');
+    var title = document.getElementById('titleTabela');
+
+    divLista.style.height = '900px';
+    tabelaVendas.style.display = 'inline';
+    chart.style.marginBottom = '100px';
+    title.style.display = 'inline';
+}
