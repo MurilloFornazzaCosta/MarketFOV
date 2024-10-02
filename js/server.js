@@ -39,6 +39,20 @@ app.get('/vendas', (req, res) => {
     console.log("Rota /vendas foi acessada.");
 });
 
+// Rota para obter TODOS dados da tabela venda
+app.get('/vendas-totais', (req, res) => {
+    const query = 'SELECT * FROM venda;' // Substitua pelo seu SQL
+    conn.query(query, (err, results) => {
+        if (err) {
+            console.error('Erro ao executar a consulta:', err);
+            res.status(500).json({ error: 'Erro ao executar a consulta' });
+            return;
+        }
+        res.json(results);
+    });
+    console.log("Rota /vendasTotais foi acessada.");
+});
+
 // Iniciar o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
