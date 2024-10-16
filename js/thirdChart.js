@@ -29,35 +29,64 @@ async function showVendas() {
     var tabelaVendas = document.getElementById('tabelaVendas');
     var chart = document.querySelector('.chart');
     var title = document.getElementById('titleTabela');
+    var vazio = '';
+    const tabelaVendasBody = document.getElementById('tabela-vendas-body');
+
 
     divLista.style.height = '900px';
     tabelaVendas.style.display = 'inline';
+    tabelaVendas.style.borderCollapse = 'collapse';
+    //tabelaVendas.style.border = '2px solid #5a8b7a';
+    tabelaVendas.style.borderRadius = '10px';
+    tabelaVendas.style.marginBottom = '50px'
     chart.style.marginBottom = '100px';
     title.style.display = 'inline';
+
+
+
+    /*table {
+        border-collapse: collapse;
+        border: 2px solid #5a8b7a;
+        border-radius: 10px;
+        font-family: sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        margin-bottom: 50px;
+        color: white;
+        display: none;
+      }*/
     
 
     // Espera a resolução de fetchVendas antes de prosseguir
+    
     const vendasData = await fetchVendas();
 
-        // Itera sobre os dados de vendas e cria uma nova linha para cada venda
-        vendasData.forEach(venda => {
-            // Cria uma nova linha <tr>
-            const row = document.createElement('tr');
     
-            // Cria células <td> e <th> para cada campo de venda
-            row.innerHTML = `
-                <th scope="row">${venda.codeCupom}</th>
-                <td>${venda.dataVenda}</td>
-                <td>${venda.cpfCliente}</td>
-                <td>${venda.im}</td>
-                <td>${venda.cnpj}</td>
-                <td>${venda.ie}</td>
-                <td>R$ ${venda.totalVenda}</td>
-            `;
+    // Limpa as linhas anteriores da tabela para evitar duplicação
+    tabelaVendasBody.innerHTML = ''; 
     
-            // Adiciona a nova linha à tabela
-            tabelaVendas.appendChild(row);
-        });
+    // Itera sobre os dados de vendas e cria uma nova linha para cada venda
+    vendasData.forEach(venda => {
+        // Cria uma nova linha <tr>
+        const row = document.createElement('tr');
+    
+        // Cria células <td> e <th> para cada campo de venda
+        row.innerHTML = `
+            <th scope="row">${venda.codeCupom}</th>
+            <td>${venda.dataVenda}</td>
+            <td>${venda.cpfCliente}</td>
+            <td>${venda.im}</td>
+            <td>${venda.cnpj}</td>
+            <td>${venda.ie}</td>
+            <td>R$ ${venda.totalVenda}</td>
+        `;
+    
+        // Adiciona a nova linha ao tbody
+        
+        tabelaVendasBody.appendChild(row);
+        
+    });
+    
 
     
     // Agora, `vendasData` contém os dados retornados pela fetchVendas

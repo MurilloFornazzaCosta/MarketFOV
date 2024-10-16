@@ -315,7 +315,7 @@ table {
 
 table {
     border-collapse: collapse;
-    border: 2px solid #5a8b7a;
+    border: 2px solid #8b5a5a;
     border-radius: 10px;
     font-family: sans-serif;
     font-size: 0.7rem;
@@ -329,11 +329,13 @@ table {
     caption-side: bottom;
     padding: 10px;
     font-weight: bold;
+    margin-left: 100px;
   }
   
   thead,
   tfoot {
-    background-color: #5a8b7a
+    background-color: #5a8b7a;
+    margin-left: 100px;
   }
   
   th,
@@ -341,6 +343,7 @@ table {
     position: sticky;
     border: 1px solid #c1d7ff;
     padding: 8px 8px;
+    margin-left: 100px;
   }
   
   td:last-of-type {
