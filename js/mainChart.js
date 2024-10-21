@@ -18,6 +18,10 @@ let contador = 0;
 
 
 // Função para obter dados do servidor e calcular o valor total de cada venda
+document.addEventListener("DOMContentLoaded", async function() {
+    await fetchVendas();
+});
+
 async function fetchVendas() {
     try {
         const response = await fetch('http://localhost:3306/vendas');
@@ -26,7 +30,7 @@ async function fetchVendas() {
         }
         const data = await response.json();
         data.forEach(element => {
-            vendas.push(element)
+            vendas.push(element);
         });
         // Calcula o valor total para cada venda 
         totaisDasVendas = data.map(venda => venda.totalVenda);
@@ -41,30 +45,76 @@ async function fetchVendas() {
     } catch (error) {
         console.error('Houve um problema com a requisição Fetch:', error);
     }
-
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Chama a função para obter os dados assim que a página for carregada
-    console.log(fetchVendas());
-    console.log(datasVendas);
-});
+function somaVendasPorMes() {
+    const vendasPorMes = {}; // Inicializa o objeto para armazenar as vendas por mês
+
+    vendas.forEach(venda => {
+        // Verifica se a propriedade 'dataVenda' está definida e é uma string
+        if (venda.dataVenda && typeof venda.dataVenda === 'string') {
+            // Extrair o mês e o ano manualmente da string de data 'YYYY-MM-DD'
+            const partesData = venda.dataVenda.split('-'); // Quebra a string em [YYYY, MM, DD]
+            const ano = partesData[0];
+            const mes = partesData[1];
+
+            const mesAno = `${mes}-${ano}`; // Formato MM-YYYY
+
+            if (vendasPorMes[mesAno]) {
+                // Se já houver vendas para esse mês, somar o total da venda atual
+                vendasPorMes[mesAno] += venda.totalVenda;
+            } else {
+                // Se não houver vendas para esse mês, inicializar com o total da venda atual
+                vendasPorMes[mesAno] = venda.totalVenda;
+            }
+        } else {
+            console.error('Data inválida para venda:', venda);
+        }
+    });
+
+    // Converter o objeto vendasPorMes em um array de resultados
+    const results = Object.keys(vendasPorMes).map(mesAno => {
+        return { mesAno: mesAno, totalVenda: vendasPorMes[mesAno] };
+    });
+
+    contador++; // Certifique-se de que o contador é global e inicializado
+    return results;
+}
 
 
-document.addEventListener('DOMContentLoaded', function () {
 
+document.addEventListener('DOMContentLoaded', async function () {
+    await fetchVendas(); 
+    console.log(vendas);
+
+
+
+    const mesesInit = somaVendasPorMes().map(item => item.mesAno);
+        console.log(mesesInit);
+
+        for (let i = 0; i < mesesInit.length; i++) {
+            for (let i2 = 0; i2 < arrayMeses.length; i2++) {
+                if (mesesInit[i] == arrayMeses[i2]) {
+                    dadosVendasMes[i2] = somaVendasPorMes().map(item => item.totalVenda)[i];
+                }
+                
+            }
+                
+        }
+
+        dados = dadosVendasMes;
 
 
     selectElement.value = 'mes';
-    label = ['Janeir', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
     barchart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: datasVendas,
+            labels: label,
             datasets: [{
                 label: 'Relatório de vendas',
-                data: totaisDasVendas, // Agora usa os dados calculados
+                data: dados, // Agora usa os dados calculados
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(54, 162, 235, 0.7)',
@@ -92,6 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+
 });
 
 
@@ -124,46 +176,6 @@ selectElement.addEventListener("change", function () {
             const dataVenda = new Date(venda.data); // Corrige para acessar a propriedade 'data'
             return dataVenda.getMonth() === mesAtual && dataVenda.getFullYear() === anoAtual;
         });
-    }
-    
-
-    
-    console.log();
-
-
-
-    function somaVendasPorMes() {
-        const vendasPorMes = {}; // Inicializa o objeto para armazenar as vendas por mês
-    
-        vendas.forEach(venda => {
-            // Verifica se a propriedade 'dataVenda' está definida e é uma string
-            if (venda.dataVenda && typeof venda.dataVenda === 'string') {
-                // Extrair o mês e o ano manualmente da string de data 'YYYY-MM-DD'
-                const partesData = venda.dataVenda.split('-'); // Quebra a string em [YYYY, MM, DD]
-                const ano = partesData[0];
-                const mes = partesData[1];
-    
-                const mesAno = `${mes}-${ano}`; // Formato MM-YYYY
-    
-                if (vendasPorMes[mesAno]) {
-                    // Se já houver vendas para esse mês, somar o total da venda atual
-                    vendasPorMes[mesAno] += venda.totalVenda;
-                } else {
-                    // Se não houver vendas para esse mês, inicializar com o total da venda atual
-                    vendasPorMes[mesAno] = venda.totalVenda;
-                }
-            } else {
-                console.error('Data inválida para venda:', venda);
-            }
-        });
-    
-        // Converter o objeto vendasPorMes em um array de resultados
-        const results = Object.keys(vendasPorMes).map(mesAno => {
-            return { mesAno: mesAno, totalVenda: vendasPorMes[mesAno] };
-        });
-    
-        contador++; // Certifique-se de que o contador é global e inicializado
-        return results;
     }
         
 
@@ -371,12 +383,12 @@ selectElement.addEventListener("change", function () {
                 label: '',
                 data: dados, // Usa os valores calculados aqui
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
