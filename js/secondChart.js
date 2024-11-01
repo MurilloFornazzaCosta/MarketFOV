@@ -1,5 +1,33 @@
-function showChart2() {
+let produtosVendidos = [];
 
+async function fetchVendas() {
+    try {
+        const response = await fetch('http://localhost:3306/produtos-vendidos');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        data.forEach(element => {
+            produtosVendidos.push(element);
+        });
+
+    } catch (error) {
+        console.error('Houve um problema com a requisição Fetch:', error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async function() {
+    await fetchVendas();
+    fetchVendas();
+     // Exibe o conteúdo do array após o carregamento
+});
+
+
+
+
+
+function showChart2() {
+    console.log(produtosVendidos);
     // Seleciona a div que irá conter o gráfico
     var tabelaProdutosDiv = document.querySelector('.tabelaProdutos');
 
