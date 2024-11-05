@@ -54,7 +54,7 @@ app.get('/vendas-totais', (req, res) => {
 });
 
 app.get('/produtos-vendidos', (req, res) => {
-    const query = 'SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom FROM produtosvendidos pvd JOIN produtos p ON pvd.id = p.id AND pvd.barCode = p.barCode;' // Substitua pelo seu SQL
+    const query = 'SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom, v.im FROM produtosvendidos pvd JOIN produtos p ON pvd.id = p.id AND pvd.barCode = p.barCode JOIN venda v ON v.codeCupom = pvd.codeCupom;' // Substitua pelo seu SQL
     conn.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);

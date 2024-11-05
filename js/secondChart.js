@@ -1,32 +1,36 @@
 let produtosVendidos = [];
+let produto1;
+let produto2;
+let produto3;
+let produto4;
+let produto5;
 
-async function fetchVendas() {
-    try {
-        const response = await fetch('http://localhost:3306/produtos-vendidos');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+
+
+
+async function showChart2() {
+
+    async function fetchVendas() {
+        try {
+            const response = await fetch('http://localhost:3306/produtos-vendidos');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            data.forEach(element => {
+                produtosVendidos.push(element);
+            });
+         
+            // Atualiza o gráfico com os novos dados
+    
+    
+        } catch (error) {
+            console.error('Houve um problema com a requisição Fetch:', error);
         }
-        const data = await response.json();
-        data.forEach(element => {
-            produtosVendidos.push(element);
-        });
-
-    } catch (error) {
-        console.error('Houve um problema com a requisição Fetch:', error);
     }
-}
 
-document.addEventListener("DOMContentLoaded", async function() {
     await fetchVendas();
-    fetchVendas();
-     // Exibe o conteúdo do array após o carregamento
-});
 
-
-
-
-
-function showChart2() {
     console.log(produtosVendidos);
     // Seleciona a div que irá conter o gráfico
     var tabelaProdutosDiv = document.querySelector('.tabelaProdutos');
@@ -59,28 +63,28 @@ function showChart2() {
     const ctx2 = canvas.getContext('2d');
 
     // Cria o gráfico
-    new Chart(ctx2, {
+    doughnut = new Chart(ctx2, {
         type: 'doughnut',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [12, 19, 3, 5, 2],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(54, 162, 235, 0.7)',
                     'rgba(255, 206, 86, 0.7)',
                     'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                    'rgba(255, 159, 64, 0.7)'
+                    'rgba(153, 102, 255, 0.7)'
+                    
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(153, 102, 255, 1)'
+                    
                 ],
                 borderWidth: 1
             }]

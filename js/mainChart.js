@@ -33,9 +33,7 @@ async function fetchVendas() {
             vendas.push(element);
         });
         // Calcula o valor total para cada venda 
-        totaisDasVendas = data.map(venda => venda.totalVenda);
-        datasVendas = data.map(venda => venda.dataVenda);
-
+       
         // Atualiza o gráfico com os novos dados
         if (barchart) {
             barchart.data.datasets[0].data = totaisDasVendas;
