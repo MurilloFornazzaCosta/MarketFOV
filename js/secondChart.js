@@ -1,4 +1,6 @@
 let produtosVendidos = [];
+let nomes = []
+let nomesEqtd = {};
 let produto1;
 let produto2;
 let produto3;
@@ -20,6 +22,7 @@ async function showChart2() {
             data.forEach(element => {
                 produtosVendidos.push(element);
             });
+            nomes = produtosVendidos.map(produto => produto.nome);
          
             // Atualiza o gráfico com os novos dados
     
@@ -31,7 +34,27 @@ async function showChart2() {
 
     await fetchVendas();
 
-    console.log(produtosVendidos);
+    function top5Elements(nomes) {
+        // Contar a frequência de cada elemento
+        const countMap = {};
+        nomes.forEach(item => {
+            countMap[item] = (countMap[item] || 0) + 1;
+        });
+    
+        // Converter o objeto em um array de [elemento, contagem]
+        const sortedElements = Object.entries(countMap)
+            .sort((a, b) => b[1] - a[1]) // Ordenar por contagem em ordem decrescente
+            .slice(0, 5); // Pegar os 5 elementos mais frequentes
+    
+        return sortedElements.map(([element, count]) => ({ element, count }));
+    }
+    
+    // Exemplo de uso
+    
+    console.log(top5Elements(nomes));
+    
+
+    console.log(nomes);
     // Seleciona a div que irá conter o gráfico
     var tabelaProdutosDiv = document.querySelector('.tabelaProdutos');
 
