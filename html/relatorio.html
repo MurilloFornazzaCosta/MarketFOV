@@ -13,11 +13,9 @@
 <body>
     <div class="navbar">
         <div class="image-container">
-            <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
-            <div class="comment-box" id="comment-box">
-                <a
-                    href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">Alterar<br>Dados</a>
-            </div>
+            <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">
+                <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
+            </a>
         </div>
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
