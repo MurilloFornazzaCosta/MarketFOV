@@ -1,11 +1,7 @@
 let produtosVendidos = [];
-let nomes = []
 let nomesEqtd = {};
-let produto1;
-let produto2;
-let produto3;
-let produto4;
-let produto5;
+let dadosChart = [];
+let nomesProdutos = [];
 
 
 
@@ -51,8 +47,8 @@ async function showChart2() {
     
     // Exemplo de uso
     
-    console.log(top5Elements(nomes));
-    
+    nomesProdutos = top5Elements(nomes).map(item => item.element);
+    dadosChart = top5Elements(nomes).map(item => item.count);
 
     console.log(nomes);
     // Seleciona a div que irá conter o gráfico
@@ -89,10 +85,10 @@ async function showChart2() {
     doughnut = new Chart(ctx2, {
         type: 'doughnut',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            labels: nomesProdutos,
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2],
+                data: dadosChart,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
                     'rgba(54, 162, 235, 0.7)',
