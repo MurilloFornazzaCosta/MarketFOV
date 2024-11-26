@@ -33,14 +33,13 @@ if (!isset($_SESSION['mercadoLogado'])) {
     </div>
     <div class="navbar">
         <div class="image-container">
-            <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
-            <div class="comment-box" id="comment-box">
-            <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">Alterar<br>Dados</a>
-            </div>
+            <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">
+                <img src="../imgs/retomar.png" alt="placeholder" id="logo">
+            </a>
         </div>
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
-            <a href="../html/relatorio.html"><button id="button">Relatório de vendas</button></a>
+            <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
             <a href="../html/estoque.php"><button id="button">Estoque</button></a>
             <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>

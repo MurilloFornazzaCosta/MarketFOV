@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['mercadoLogado'])) {
+    $message = 'FAÇA LOGIN PARA ACESSAR ESSA PÁGINA!';
+    header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
+    exit();
+}  else {
+    $mercadoLogado = $_SESSION['mercadoLogado'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,12 +24,12 @@
     <div class="navbar">
         <div class="image-container">
             <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">
-                <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
+                <img src="../imgs/retomar.png" alt="placeholder" id="logo">
             </a>
         </div>
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
-            <a href="../html/relatorio.html"><button id="button">Relatório de vendas</button></a>
+            <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
             <a href="../html/estoque.php"><button id="button">Estoque</button></a>
             <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
