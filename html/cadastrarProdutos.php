@@ -15,7 +15,6 @@ if (!isset($_SESSION['mercadoLogado'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Produtos</title>
-    <link rel="stylesheet" href="../css/navbar.css">
     <script src="../js/fazercompras.js"></script>
     <style>
         /* Adicione estilos básicos para as imagens */
@@ -32,7 +31,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
 <body>
 
     <div class="navbar">
-    <div class="image-container">
+        <div class="image-container">
             <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">
                 <img src="../imgs/retomar.png" alt="placeholder" id="logo">
             </a>
