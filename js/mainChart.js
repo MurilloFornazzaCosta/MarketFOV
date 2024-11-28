@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         data: {
             labels: label,
             datasets: [{
-                label: 'Relatório de vendas',
+                label: 'Total de vendas em R$',
                 data: dados, // Agora usa os dados calculados
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',
@@ -378,7 +378,7 @@ selectElement.addEventListener("change", function () {
         data: {
             labels: label,
             datasets: [{
-                label: '',
+                label: 'Total de vendas em R$',
                 data: dados, // Usa os valores calculados aqui
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.7)',

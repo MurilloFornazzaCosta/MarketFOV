@@ -23,10 +23,20 @@ if (!isset($_SESSION['mercadoLogado'])) {
 <body>
     <div class="navbar">
         <div class="image-container">
-            <a href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">
+            <!-- ../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?> -->
+            <button id="btnImg">
                 <img src="../imgs/retomar.png" alt="placeholder" id="logo">
-            </a>
+            </button>
         </div>
+
+        <dialog>
+            <div class="divDialog">
+                Digite a senha do comércio:
+                <input type="text">
+                <button id="btnCloseModal"></button>
+            </div>
+        </dialog>
+
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
             <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
@@ -98,6 +108,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
     <script src="../js/mainChart.js"></script>
     <script src="../js/secondChart.js"></script>
     <script src="../js/listaVendas.js"></script>
+    <script src="../js/dialog.js"></script>
 </body>
 
 </html>
