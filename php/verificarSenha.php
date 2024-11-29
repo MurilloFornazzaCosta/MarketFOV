@@ -9,14 +9,16 @@ if (!isset($_SESSION['mercadoLogado'])) {
 
 $senhaInserida = trim($_POST['senha']);
 $senhaSessao = $_SESSION['mercadoLogado']['senha'];
+$cnpj = $_SESSION['mercadoLogado']['cnpj'];
 
 if ($senhaInserida === $senhaSessao) {
     // Redireciona para a página de edição de dados
-    header('Location: /MarketFOV/html/editarMercado.php');
+    header('Location: /MarketFOV/html/editarMercado.php?cnpj=' . urlencode($cnpj));
     exit();
 } else {
     // Redireciona de volta para a página anterior com mensagem de erro
     $message = "Senha incorreta. Tente novamente.";
-    header("Location: /MarketFOV/html/paginaAnterior.php?message=" . urlencode($message));
+    header("Location: /MarketFOV/html/relatorio.php?message=" . urlencode($message));
     exit();
+
 }

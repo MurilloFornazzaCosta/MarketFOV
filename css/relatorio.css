@@ -1,3 +1,4 @@
+
 body {
     background-color: #C5D5E4;
     font-family: Roboto_Slab;
@@ -12,7 +13,7 @@ body {
 dialog {
     width: 300px;
     max-width: 90%;
-    height: 120px;
+    height: 160px;
     max-height: 90vh; /* Define a altura máxima em relação à viewport */
     padding: 20px;
     border: none;
