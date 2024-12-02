@@ -28,9 +28,19 @@ unset($_SESSION['erroSenha']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório das vendas</title>
     <link rel="stylesheet" href="../css/relatorio.css">
+    <link rel="stylesheet" href="../css/msg.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
+
+    <div class="message-container" id="messageContainer">
+        <?php
+        if (isset($_GET['message'])) {
+            echo htmlspecialchars($_GET['message']);
+        }
+        ?>
+    </div>
+
     <div class="navbar">
         <div class="image-container">
             <button id="btnImg">
@@ -50,7 +60,7 @@ unset($_SESSION['erroSenha']);
                 </div>
                 <?php  ?>
                 <?php if (isset($message)): ?>
-                    <?php  ?>
+                    
                     <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
                     <?php endif; ?>
                 <button type="submit" id="btnCloseModal">Editar dados</button>
@@ -145,6 +155,23 @@ unset($_SESSION['erroSenha']);
             modal.close(); // Fecha o dialog
         }
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageContainer = document.getElementById('messageContainer');
+        if (messageContainer.textContent.trim()) {
+            if (window.location.search.includes('success=true')) {
+                messageContainer.classList.add('success');
+            } else {
+                messageContainer.classList.add('error');
+            }
+            messageContainer.style.display = 'block';
+            setTimeout(() => {
+                messageContainer.style.display = 'none';
+            }, 2500);
+        }
+    });
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
