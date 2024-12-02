@@ -10,6 +10,15 @@ if (!isset($_SESSION['mercadoLogado'])) {
     $mercadoLogado = $_SESSION['mercadoLogado'];
 }
 
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+// Verifica se há mensagem de erro de senha
+$erroSenha = isset($_SESSION['erroSenha']) ? $_SESSION['erroSenha'] : null;
+
+// Limpa a mensagem de erro após exibi-la
+unset($_SESSION['erroSenha']);
+
 // Verificar se o produto foi enviado via URL
 if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
     $produtoNome = htmlspecialchars($_GET['name']);
@@ -43,26 +52,48 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fazer Compras</title>
     <link rel="stylesheet" href="../css/fazerCompras.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="../js/fazercompras.js"></script>
 </head>
 
 <body>
     <div class="navbar">
         <div class="image-container">
-            <img src="../imgs/macedopng.png" alt="placeholder" id="logo">
-            <div class="comment-box" id="comment-box">
-                <a
-                    href="../html/editarMercado.php?cnpj=<?php echo urlencode($mercadoLogado['cnpj']); ?>">Alterar<br>Dados</a>
-            </div>
+            <button id="btnImg">
+                <img src="../imgs/retomar.png" alt="placeholder" id="logo">
+            </button>
         </div>
+
+        <!-- Dialog para inserir a senha -->
+        <dialog id="authDialog">
+            <form method="POST" action="/MarketFOV/php/verificarSenha.php">
+                Digite a senha do comércio:
+                <div class="group">
+                    <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+                        <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                    <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
+                </div>
+                <?php  ?>
+                <?php if (isset($message)): ?>
+                    
+                    <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
+                    <?php endif; ?>
+                <button type="submit" id="btnCloseModal">Editar dados</button>
+            </form>
+        </dialog>
+
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
             <a href=""><button id="button">Aplicar Desconto</button></a>
-            <a href="../html/relatorio.html"><button id="button">Relatório de vendas</button></a>
+            <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
             <a href="../html/estoque.php"><button id="button">Estoque</button></a>
             <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
     </div>
+
+    
+
     <main>
         <div class="detalhesProduto">
             <form action="../php/BuscaProduto.php" method="post" id="barCodeInput">
@@ -120,6 +151,64 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
             </tfoot>
         </table>
     </div>
+
+
+    <script>
+        const btnImg = document.getElementById("btnImg");
+        const btnCloseModal = document.getElementById("btnCloseModal");
+        const modal = document.getElementById("authDialog"); // Definição correta do modal
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Exibe o modal quando o botão é clicado
+        btnImg.onclick = function () {
+            modal.showModal();
+        };
+
+        // Fecha o modal quando o botão de fechamento é clicado
+        btnCloseModal.onclick = function () {
+            modal.close();
+        };
+
+        // Exibe a mensagem de erro se houver
+        <?php if ($erroSenha): ?>
+            // Exibe a mensagem de erro no frontend
+            errorMessage.textContent = <?= json_encode($erroSenha) ?>;
+            errorMessage.style.display = 'block'; // Torna a mensagem visível
+            modal.showModal(); // Exibe o dialog
+        <?php endif; ?>
+
+        function fecharDialog() {
+            modal.close(); // Fecha o dialog
+        }
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageContainer = document.getElementById('messageContainer');
+        if (messageContainer.textContent.trim()) {
+            if (window.location.search.includes('success=true')) {
+                messageContainer.classList.add('success');
+            } else {
+                messageContainer.classList.add('error');
+            }
+            messageContainer.style.display = 'block';
+            setTimeout(() => {
+                messageContainer.style.display = 'none';
+            }, 2500);
+        }
+    });
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example_select').select2(); // Corrigido o id do select
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
 </body>
 
 </html>

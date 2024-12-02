@@ -1,7 +1,7 @@
 <?php
-session_start(); // Inicia a sessão
 
-// Verifica se o usuário está autenticado
+session_start(); 
+
 if (!isset($_SESSION['mercadoLogado'])) {
     $message = 'FAÇA LOGIN PARA ACESSAR ESSA PÁGINA!';
     header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));

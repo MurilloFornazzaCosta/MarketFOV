@@ -18,7 +18,7 @@ if ($senhaInserida === $senhaSessao) {
 } else {
     // Redireciona de volta para a página anterior com mensagem de erro
     $message = "Senha incorreta. Tente novamente.";
-    header("Location: /MarketFOV/html/relatorio.php?message=" . urlencode($message));
+    header("Location: /MarketFOV/html/fazerCompras.php?message=" . urlencode($message));
     exit();
 
 }
