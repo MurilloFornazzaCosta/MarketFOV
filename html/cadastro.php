@@ -66,7 +66,7 @@
         return value;
     }
 
-    document.getElementById('textareaCNPJ').addEventListener('input', function(event) {
+    document.getElementById('textareaCNPJ').addEventListener('input', function (event) {
         this.value = applyCNPJMask(this.value);
     });
 
@@ -74,15 +74,15 @@
         value = value.replace(/\D/g, '');
         return value;
     }
-    document.getElementById('textareaIE').addEventListener('input', function(event) {
+    document.getElementById('textareaIE').addEventListener('input', function (event) {
         this.value = applyIEandIMmask(this.value)
     })
-    document.getElementById('textareaIM').addEventListener('input', function(event) {
+    document.getElementById('textareaIM').addEventListener('input', function (event) {
         this.value = applyIEandIMmask(this.value)
     })
 
     // Exibe a mensagem de erro/sucesso
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const messageContainer = document.getElementById('messageContainer');
         if (messageContainer.textContent.trim()) {
             if (window.location.search.includes('success=true')) {

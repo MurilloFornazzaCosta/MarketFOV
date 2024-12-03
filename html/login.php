@@ -34,7 +34,7 @@
     </div>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const messageContainer = document.getElementById('messageContainer');
         if (messageContainer.textContent.trim()) {
             if (window.location.search.includes('success=true')) {

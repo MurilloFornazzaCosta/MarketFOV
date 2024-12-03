@@ -25,7 +25,7 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
     $produtoPreco = htmlspecialchars($_GET['price']);
     $produtoBarCode = htmlspecialchars($_GET['barCode']);
     // Verificar se o produto existe antes de adicionar à sessão
-    if (!empty($produtoNome) && is_numeric($produtoPreco) && !empty($produtoNome) ) {
+    if (!empty($produtoNome) && is_numeric($produtoPreco) && !empty($produtoNome)) {
         // Se o produto já está na sessão, incrementar a quantidade
         if (isset($_SESSION['produtos'][$produtoNome])) {
             $_SESSION['produtos'][$produtoNome]['quantidade']++;
@@ -38,9 +38,9 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
             ];
         }
     }
-   foreach ($_SESSION['produtos'] as $produto) {
+    foreach ($_SESSION['produtos'] as $produto) {
         $produtos[] = $produto;
-   }
+    }
 
 }
 ?>
@@ -60,13 +60,13 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
 <body>
     <div class="navbar">
 
-    <div class="message-container" id="messageContainer">
-        <?php
-        if (isset($_GET['message'])) {
-            echo htmlspecialchars($_GET['message']);
-        }
-        ?>
-    </div>
+        <div class="message-container" id="messageContainer">
+            <?php
+            if (isset($_GET['message'])) {
+                echo htmlspecialchars($_GET['message']);
+            }
+            ?>
+        </div>
 
         <div class="image-container">
             <button id="btnImg">
@@ -79,16 +79,19 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
             <form method="POST" action="/MarketFOV/php/verificarSenhaParaEditar.php">
                 Digite a senha do comércio:
                 <div class="group">
-                    <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
-                        <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                        class="icon">
+                        <path
+                            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                            stroke-linejoin="round" stroke-linecap="round"></path>
                     </svg>
                     <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
                 </div>
-                
+
                 <?php if (isset($message)): ?>
-                    
+
                     <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
-                    <?php endif; ?>
+                <?php endif; ?>
                 <button type="submit" id="btnCloseModal">Editar dados</button>
             </form>
         </dialog>
@@ -102,16 +105,21 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
                 <form method="POST" action="/MarketFOV/php/verificarSenhaParaRelatorio.php">
                     Digite a senha do comércio:
                     <div class="group">
-                        <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
-                            <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                        <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" class="icon">
+                            <path
+                                d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                                stroke-linejoin="round" stroke-linecap="round"></path>
                         </svg>
-                        <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
+                        <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha"
+                            required>
                     </div>
-                
+
                     <?php if (isset($message)): ?>
-                    
-                        <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
-                        <?php endif; ?>
+
+                        <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?>
+                        </h1>
+                    <?php endif; ?>
                     <button type="submit" id="btnCloseModal">Editar dados</button>
                 </form>
             </dialog>
@@ -121,7 +129,7 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
         </div>
     </div>
 
-    
+
 
     <main>
         <div class="detalhesProduto">
@@ -130,17 +138,17 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
                 <input type="submit">
             </form>
             <?php if (isset($_GET['name']) && isset($_GET['price'])): ?>
-            <h2 id="nomeProduto">
-                <?php echo htmlspecialchars($_GET['name']); ?>
-            </h2>
-            <p id="preco">R$
-                <?php echo htmlspecialchars($_GET['price']); ?>
-            </p>
-            <p id="preco">
-                <?php echo htmlspecialchars($_GET['barCode']); ?>
-            </p>
+                <h2 id="nomeProduto">
+                    <?php echo htmlspecialchars($_GET['name']); ?>
+                </h2>
+                <p id="preco">R$
+                    <?php echo htmlspecialchars($_GET['price']); ?>
+                </p>
+                <p id="preco">
+                    <?php echo htmlspecialchars($_GET['barCode']); ?>
+                </p>
             <?php else: ?>
-            <p>Produto não encontrado.</p>
+                <p>Produto não encontrado.</p>
             <?php endif; ?>
             <form action="../php/InsereVenda.php" method="POST">
                 <button id="finalizar">Finalizar Compra</button>
@@ -221,22 +229,22 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
         }
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const messageContainer = document.getElementById('messageContainer');
-        if (messageContainer.textContent.trim()) {
-            if (window.location.search.includes('success=true')) {
-                messageContainer.classList.add('success');
-            } else {
-                messageContainer.classList.add('error');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const messageContainer = document.getElementById('messageContainer');
+            if (messageContainer.textContent.trim()) {
+                if (window.location.search.includes('success=true')) {
+                    messageContainer.classList.add('success');
+                } else {
+                    messageContainer.classList.add('error');
+                }
+                messageContainer.style.display = 'block';
+                setTimeout(() => {
+                    messageContainer.style.display = 'none';
+                }, 2500);
             }
-            messageContainer.style.display = 'block';
-            setTimeout(() => {
-                messageContainer.style.display = 'none';
-            }, 2500);
-        }
-    });
-</script>
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
