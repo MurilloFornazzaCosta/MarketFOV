@@ -58,7 +58,7 @@ unset($_SESSION['erroSenha']);
                     </svg>
                     <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
                 </div>
-                <?php  ?>
+                
                 <?php if (isset($message)): ?>
                     
                     <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
@@ -68,9 +68,28 @@ unset($_SESSION['erroSenha']);
         </dialog>
 
         <div class="buttons">
-            <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
-            <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
-            <a href="../html/estoque.php"><button id="button">Estoque</button></a>
+            <a href="../html/cadastrarProdutos.php"><button class="button" id="button">Registrar Produto</button></a>
+            <a href="../html/relatorio.php"><button class="button" id="buttonRelatorio">Relatório de vendas</button></a>
+
+            <dialog id="authDialog">
+            <form method="POST" action="/MarketFOV/php/verificarSenha.php">
+                    Digite a senha do comércio:
+                    <div class="group">
+                        <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+                            <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+                        </svg>
+                        <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
+                    </div>
+                
+                    <?php if (isset($message)): ?>
+                    
+                        <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
+                        <?php endif; ?>
+                    <button type="submit" id="btnCloseModal">Editar dados</button>
+                </form>
+            </dialog>
+
+            <a href="../html/estoque.php"><button class="button" id="button">Estoque</button></a>
             <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
     </div>
@@ -128,6 +147,7 @@ unset($_SESSION['erroSenha']);
     </div>
 
     <script>
+        const buttonRelatorio = document.getElementById("buttonRelatorio");
         const btnImg = document.getElementById("btnImg");
         const btnCloseModal = document.getElementById("btnCloseModal");
         const modal = document.getElementById("authDialog"); // Definição correta do modal
@@ -135,6 +155,10 @@ unset($_SESSION['erroSenha']);
 
         // Exibe o modal quando o botão é clicado
         btnImg.onclick = function () {
+            modal.showModal();
+        };
+
+        buttonRelatorio.onclick = function () {
             modal.showModal();
         };
 

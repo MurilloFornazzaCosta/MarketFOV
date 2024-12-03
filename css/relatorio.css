@@ -129,7 +129,7 @@ dialog::backdrop {
 }
 
 
-#button {
+.button {
     border-radius: 15px;
     background-color: #5a8b8a;
     color: #ffffff;
@@ -142,7 +142,7 @@ dialog::backdrop {
     transition: 0.5s;
 }
 
-#button:hover {
+.button:hover {
     background-color: #3b6161;
     transform: scale(1.03);
     cursor: pointer;
