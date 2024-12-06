@@ -47,6 +47,8 @@ if (!$results) {
 </head>
 
 <body>
+
+
     <div class="detalhesProduto">
         <h1>Editar Produto</h1>
         <form id="meuFormulario" action="../php/editarProdutos.php?id=<?php echo htmlspecialchars($id); ?>"
