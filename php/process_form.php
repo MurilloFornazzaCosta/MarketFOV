@@ -73,7 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "As senhas não coincidem.";
     }
 
-    // Constrói a mensagem de erro ou sucesso
     if (!empty($errors)) {
         $message = implode(' | ', $errors);
         header("Location: cadastro.php?message=" . urlencode($message));
@@ -81,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $conn = new mysqli("ESN509VMYSQL", "aluno", "Senai1234", "marketfov4");
         $insere = $conn->prepare("INSERT INTO mercados VALUES (?, ?, ?, ?, ?, ?)");
-        $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $login);
+        $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $senha);
         if ($insere->execute()) {
             $message = "Cadastro realizado com sucesso!";
         }

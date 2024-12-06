@@ -72,7 +72,7 @@ if (!$results) {
 
             <label for="quantd" id="textQuantd">Quantidade</label>
             <br>
-            <input type="text" id="quantd" name="quantd" value="<?php echo htmlspecialchars($results['qtd']); ?>">
+            <input type="number" id="quantd" name="quantd" value="<?php echo htmlspecialchars($results['qtd']); ?>">
             <span class="error" id="errorQuantd"></span>
             <br><br>
 
