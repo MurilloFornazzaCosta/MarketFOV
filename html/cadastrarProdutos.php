@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 if (!isset($_SESSION['mercadoLogado'])) {
     $message = 'FAÇA LOGIN PARA ACESSAR ESSA PÁGINA!';
     header("Location: /MarketFOV/html/login.php?message=" . urlencode($message));
@@ -7,6 +9,16 @@ if (!isset($_SESSION['mercadoLogado'])) {
 } else {
     $mercadoLogado = $_SESSION['mercadoLogado'];
 }
+
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+// Verifica se há mensagem de erro de senha
+$erroSenha = isset($_SESSION['erroSenha']) ? $_SESSION['erroSenha'] : null;
+
+// Limpa a mensagem de erro após exibi-la
+unset($_SESSION['erroSenha']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,22 +36,24 @@ if (!isset($_SESSION['mercadoLogado'])) {
             /* Inicialmente, as imagens estão ocultas */
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/cadastrarProdutos.css">
+    <link rel="stylesheet" href="../css/msg.css">
 
 </head>
 
 <body>
 
-    <div class="message-container" id="messageContainer">
-        <?php
-        if (isset($_GET['message'])) {
-            echo htmlspecialchars($_GET['message']);
-        }
-        ?>
-    </div>
-
-
     <div class="navbar">
+
+        <div class="message-container" id="messageContainer">
+            <?php
+            if (isset($_GET['message'])) {
+                echo htmlspecialchars($_GET['message']);
+            }
+            ?>
+        </div>
+
         <div class="image-container">
             <button id="btnImg">
                 <img src="../imgs/retomar.png" alt="placeholder" id="logo">
@@ -57,7 +71,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
                             d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
                             stroke-linejoin="round" stroke-linecap="round"></path>
                     </svg>
-                    <input id="inputSenhaModal" class="inputModal" type="password" placeholder="senha" name="senha" required>
+                    <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha" required>
                 </div>
 
                 <?php if (isset($message)): ?>
@@ -67,6 +81,7 @@ if (!isset($_SESSION['mercadoLogado'])) {
                 <button type="submit" id="btnCloseModal">Editar dados</button>
             </form>
         </dialog>
+
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
             <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
