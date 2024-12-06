@@ -29,6 +29,7 @@ unset($_SESSION['erroSenha']);
     <title>Estoque</title>
     <link rel="stylesheet" href="../css/estoque.css">
     <link rel="stylesheet" href="../css/msg.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="/js/fazercompras.js"></script>
 </head>
 
@@ -194,6 +195,16 @@ unset($_SESSION['erroSenha']);
             }
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example_select').select2(); // Corrigido o id do select
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
 </body>
 
 </html>

@@ -60,15 +60,15 @@ if (!$results) {
             <label for="cnpj" id="textCNPJ">CNPJ</label>
             <br>
             <input type="text" id="textareaCNPJ" maxlength="18" name="cnpj"
-                value="<?php echo htmlspecialchars($results['cnpj']); ?>">
+                value="<?php echo htmlspecialchars($results['cnpj']); ?>" readonly>
             <br>
             <label for="ie" id="textIE">Inscrição Estadual</label>
             <br>
-            <input type="text" id="textareaIE" name="ie" value="<?php echo htmlspecialchars($results['ie']); ?>">
+            <input type="text" id="textareaIE" name="ie" value="<?php echo htmlspecialchars($results['ie']); ?>" readonly>
             <br>
             <label for="ie" id="textIM">Inscrição Municipal</label>
             <br>
-            <input type="text" id="textareaIM" name="im" value="<?php echo htmlspecialchars($results['im']); ?>">
+            <input type="text" id="textareaIM" name="im" value="<?php echo htmlspecialchars($results['im']); ?>" readonly>
             <br>
             <label for="senha" id="textPassword">Senha</label>
             <br>

@@ -54,7 +54,7 @@ if (!$results) {
             <label for="codigodebarra" id="textcdb">Código de Barras</label>
             <br>
             <input type="text" id="codigodebarra" name="codigodebarra"
-                value="<?php echo htmlspecialchars($results['barCode']); ?>">
+                value="<?php echo htmlspecialchars($results['barCode']); ?>" readonly>
             <span class="error" id="errorCDB"></span>
             <br><br>
 
@@ -66,7 +66,7 @@ if (!$results) {
 
             <label for="preco" id="textPreco">Preço</label>
             <br>
-            <input type="text" id="preco" name="preco" value="<?php echo htmlspecialchars($results['preco']); ?>">
+            <input type="number" id="preco" name="preco" value="<?php echo htmlspecialchars($results['preco']); ?>">
             <span class="error" id="errorPreco"></span>
             <br><br>
 

@@ -27,7 +27,7 @@
             <br>
             <label for="endereco" id="textEndereco">Endereço</label>
             <br>
-            <input type="password" id="textareaEndereco" name="endereco">
+            <input type="text" id="textareaEndereco" name="endereco">
             <br>
             <label for="cnpj" id="textCNPJ">CNPJ</label>
             <br>
