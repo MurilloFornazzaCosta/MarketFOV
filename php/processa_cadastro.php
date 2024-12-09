@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Constrói a mensagem de erro ou sucesso
     if (!empty($errors)) {
         $message = implode(' | ', $errors);
-        header("Location: /MarketFOV-Sprint/html/cadastro.php?message=" . urlencode($message));
+        header("Location: /MarketFOV/html/cadastro.php?message=" . urlencode($message));
         exit;
     } else {
         $login = null;
