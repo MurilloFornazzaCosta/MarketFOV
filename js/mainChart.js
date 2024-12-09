@@ -1,5 +1,6 @@
 const ctx = document.getElementById('barchart').getContext('2d');
 const selectElement = document.getElementById('example_select');
+const cnpj = req.query.cnpj; // Obtém o CNPJ dos parâmetros da URL
 let barchart;
 let label;
 let dados = [];
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 async function fetchVendas() {
     try {
-        const response = await fetch('http://localhost:3306/vendas');
+        const response = await fetch('http://localhost:3306/vendas?cnpj=${cnpj}');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

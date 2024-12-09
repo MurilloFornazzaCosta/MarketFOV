@@ -21,6 +21,7 @@ $result = $query->get_result();
 // Check if any rows were returned
 if ($result->num_rows > 0) {
     // Fetch the row
+    
     $row = $result->fetch_assoc();
     if ($row['cnpj'] == $_SESSION['mercadoLogado']['cnpj']) {
         $name = $row['nome'];

@@ -1,48 +1,12 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
-const phpUnserialize = require('php-unserialize');
 
 const app = express();
-const port = 3306; // Porta padrão para servidor web
-const sessionPath = "C:/xampp/tmp"; // Caminho para os arquivos de sessão do PHP
+const port = 3306; // Alterado para uma porta padrão para servidor web
 
 // Configuração do CORS para permitir requisições do frontend
 app.use(cors());
-
-// Middleware para acessar o CNPJ da sessão
-app.use((req, res, next) => {
-    const sessionId = req.cookies?.['PHPSESSID']; // Obtém o ID da sessão do cookie PHP
-    if (!sessionId) {
-        return res.status(401).json({ error: "Sessão não encontrada" });
-    }
-
-    // Localiza o arquivo da sessão correspondente
-    const sessionFile = path.join(sessionPath, `sess_${sessionId}`);
-    fs.readFile(sessionFile, 'utf8', (err, data) => {
-        if (err) {
-            console.error("Erro ao ler a sessão:", err);
-            return res.status(500).json({ error: "Erro ao acessar a sessão" });
-        }
-
-        try {
-            const sessionData = phpUnserialize(data); // Decodifica os dados da sessão PHP
-            const cnpj = sessionData?.cnpj; // Obtém o CNPJ da sessão
-
-            if (!cnpj) {
-                return res.status(401).json({ error: "CNPJ não encontrado na sessão" });
-            }
-
-            req.cnpj = cnpj; // Disponibiliza o CNPJ para outras rotas
-            next();
-        } catch (err) {
-            console.error("Erro ao desserializar a sessão:", err);
-            return res.status(500).json({ error: "Erro ao processar a sessão" });
-        }
-    });
-});
 
 // Configuração da conexão com o banco de dados MySQL
 const conn = mysql.createConnection({
@@ -55,31 +19,37 @@ const conn = mysql.createConnection({
 // Conectar ao banco de dados
 conn.connect((err) => {
     if (err) {
-        console.error('Erro ao conectar ao banco de dados MySQL:', err);
+        console.error('erro ao conectar ao banco de dados MySQL:', err);
         return;
     }
     console.log('Conectado ao banco de dados MySQL!');
 });
 
-// Rota para obter dados da tabela venda com base no CNPJ da sessão
+
+// Rota para obter dados da tabela venda
 app.get('/vendas', (req, res) => {
-    const cnpj = req.cnpj; // Recupera o CNPJ processado no middleware
-    const query = `SELECT * FROM venda WHERE cnpj = '${cnpj}'`;
 
-    conn.query(query, (err, results) => {
+    const cnpj = req.query.cnpj; // Obtém o CNPJ dos parâmetros da URL
+
+    if (!cnpj) {
+        return res.status(400).json({ error: "CNPJ não fornecido na URL" });
+    }
+
+    const query = `SELECT venda.dataVenda, venda.totalVenda FROM venda WHERE cnpj = ?;`; // Usando placeholder para segurança
+    conn.query(query, [cnpj], (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
-            res.status(500).json({ error: 'Erro ao executar a consulta' });
-            return;
+            return res.status(500).json({ error: 'Erro ao executar a consulta' });
         }
         res.json(results);
     });
-    console.log("Rota /vendas foi acessada.");
+    console.log(`Consulta de vendas feita para o CNPJ: ${cnpj}`);
 });
 
-// Rota para obter todos os dados da tabela venda
+// Rota para obter TODOS dados da tabela venda
 app.get('/vendas-totais', (req, res) => {
-    const query = 'SELECT * FROM venda;';
+    
+    const query = 'SELECT * FROM venda;' // Substitua pelo seu SQL
     conn.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
@@ -88,17 +58,11 @@ app.get('/vendas-totais', (req, res) => {
         }
         res.json(results);
     });
-    console.log("Rota /vendas-totais foi acessada.");
+    console.log("Rota /vendasTotais foi acessada.");
 });
 
-// Rota para obter produtos vendidos
 app.get('/produtos-vendidos', (req, res) => {
-    const query = `
-        SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom, v.im 
-        FROM produtosvendidos pvd 
-        JOIN produtos p ON pvd.id = p.id AND pvd.barCode = p.barCode 
-        JOIN venda v ON v.codeCupom = pvd.codeCupom;
-    `;
+    const query = 'SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom, v.im FROM produtosvendidos pvd JOIN produtos p ON pvd.id = p.id AND pvd.barCode = p.barCode JOIN venda v ON v.codeCupom = pvd.codeCupom;' // Substitua pelo seu SQL
     conn.query(query, (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
@@ -112,5 +76,7 @@ app.get('/produtos-vendidos', (req, res) => {
 
 // Iniciar o servidor
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
+    console.log('Servidor rodando na porta ${port}');
 });
+
+// AO ALTERAR LEMBRAR DE SALVAR (CTRL + S)
