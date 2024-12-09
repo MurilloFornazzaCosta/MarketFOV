@@ -89,7 +89,6 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
                 </div>
 
                 <?php if (isset($message)): ?>
-
                     <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?></h1>
                 <?php endif; ?>
                 <button type="submit" id="btnCloseModal">Editar dados</button>
@@ -191,6 +190,18 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
 
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const barCodeInput = document.getElementById('barCode');
+    if (barCodeInput) {
+        barCodeInput.focus();
+        setInterval(() => {
+            if (document.activeElement !== barCodeInput) {
+                barCodeInput.focus();
+            }
+        }, 100);
+    }
+});
+
         const buttonRelatorio = document.getElementById("buttonRelatorio");
         const btnImg = document.getElementById("btnImg");
         const btnCloseModal = document.getElementById("btnCloseModal");
