@@ -6,8 +6,8 @@ if (isset($_SESSION['mercadoLogado'])) {
 }
 
 // Create a new MySQLi connection
-//$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
-$conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+// $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 
 // Check for connection errors
 if ($conn->connect_error) {
