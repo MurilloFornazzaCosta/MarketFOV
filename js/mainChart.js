@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 async function fetchVendas() {
-    try {                                             //3306     
-        const response = await fetch(`http://localhost:3000/vendas?cnpj= ${cnpj}`);
+    try {                                            //3306     
+        const response = await fetch("http://localhost:3000/vendas?cnpj=01234567890123");
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -34,7 +34,6 @@ async function fetchVendas() {
         data.forEach(element => {
             vendas.push(element);
         });
-        // Calcula o valor total para cada venda 
        
         // Atualiza o gráfico com os novos dados
         if (barchart) {
