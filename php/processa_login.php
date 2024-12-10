@@ -1,14 +1,14 @@
 <?php
-session_start();
-$servername = "ESN509VMYSQL";
-$username = "aluno";
-$password = "Senai1234";
-$dbname = "marketfov4";
+//session_start();
+//$servername = "ESN509VMYSQL";
+//$username = "aluno";
+//$password = "Senai1234";
+//$dbname = "marketfov4";
 
-// $servername = "localhost";
-// $username = "root";
-// $password = "102938";
-// $dbname = "marketfov4";
+$servername = "localhost";
+$username = "root";
+$password = "102938";
+$dbname = "marketfov4";
 
 
 // Create connection

@@ -6,8 +6,8 @@ foreach ($_SESSION['produtos'] as $produto) {
     $produtos[] = $produto;
 }
 $mercado = $_SESSION['mercadoLogado'];
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
-// $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+//$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+$conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     adicionarVenda(null, $mercado['im'], $mercado['cnpj'], $mercado['ie'], $produtos);
