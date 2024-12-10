@@ -2,7 +2,7 @@ const vendasTotais = [];
 
 async function fetchVendas() {
     try {
-        const response = await fetch('http://localhost:3306/vendas-totais');
+        const response = await fetch('http://localhost:3000/vendas-totais');
         if (!response.ok) {
             throw new Error(`Erro de rede: ${response.statusText}`);
         }
@@ -41,20 +41,6 @@ async function showVendas() {
     tabelaVendas.style.marginBottom = '50px'
     chart.style.marginBottom = '100px';
     title.style.display = 'inline';
-
-
-
-    /*table {
-        border-collapse: collapse;
-        border: 2px solid #5a8b7a;
-        border-radius: 10px;
-        font-family: sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 3px;
-        margin-bottom: 50px;
-        color: white;
-        display: none;
-      }*/
     
 
     // Espera a resolução de fetchVendas antes de prosseguir
@@ -86,8 +72,6 @@ async function showVendas() {
         tabelaVendasBody.appendChild(row);
         
     });
-    
-
     
     // Agora, `vendasData` contém os dados retornados pela fetchVendas
     console.log(vendasData);

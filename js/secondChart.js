@@ -10,7 +10,7 @@ async function showChart2() {
 
     async function fetchVendas() {
         try {
-            const response = await fetch('http://localhost:3306/produtos-vendidos');
+            const response = await fetch('http://localhost:3000/produtos-vendidos');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

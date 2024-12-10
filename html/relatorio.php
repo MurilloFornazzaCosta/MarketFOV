@@ -188,7 +188,7 @@ unset($_SESSION['erroSenha']);
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="../js/mainChart.js"></script>
     <script src="../js/secondChart.js"></script>
-    <!-- <script src="../js/listaVendas.js"></script> -->
+    <script src="../js/listaVendas.js"></script>
 </body>
 
 </html>

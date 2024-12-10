@@ -1,6 +1,7 @@
 const ctx = document.getElementById('barchart').getContext('2d');
 const selectElement = document.getElementById('example_select');
-const cnpj = req.query.cnpj; // Obtém o CNPJ dos parâmetros da URL
+const urlParams = new URLSearchParams(window.location.search);
+const cnpj = urlParams.get('cnpj');
 let barchart;
 let label;
 let dados = [];
@@ -24,8 +25,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 });
 
 async function fetchVendas() {
-    try {
-        const response = await fetch('http://localhost:3306/vendas?cnpj=${cnpj}');
+    try {                                             //3306     
+        const response = await fetch(`http://localhost:3000/vendas?cnpj= ${cnpj}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -342,10 +343,6 @@ selectElement.addEventListener("change", function () {
         }
         
         // Exemplo de uso
-
-        
-        //const dataExemplo = ;  // Substitua por qualquer data
-        //console.log(mesmaSemana(dataExemplo));  // true ou false
         
 
         for (let i = 0; i < dias.length; i++) {
