@@ -5,7 +5,9 @@ foreach ($_SESSION['produtos'] as $produto) {
     $produtos[] = $produto;
 }
 $mercado = $_SESSION['mercadoLogado'];
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+//$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+$conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     adicionarVenda(null, $mercado['im'], $mercado['cnpj'], $mercado['ie'], $produtos);
     unset($_SESSION['produtos']);
@@ -28,7 +30,9 @@ function adicionarVenda($cpfCliente, $im, $cnpj, $ie, $produtos = []) {
     
     // Definir a data da ve0 nda
     $data = date("Y-m-d");
-    $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    //$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
     // Preparar a consulta SQL para inserir a venda
     $stmt = $conn->prepare("INSERT INTO venda (codeCupom, dataVenda, cpfCliente, im, cnpj, ie, totalVenda) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -52,7 +56,9 @@ function adicionarVenda($cpfCliente, $im, $cnpj, $ie, $produtos = []) {
 }
 function verificarExistenciaCupom($codeCupom)
     {
-        $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+        //$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+        $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
         // Prepare the query to check if the cupom exists in the venda table
         $stmt = $conn->prepare("SELECT COUNT(*) FROM venda WHERE codeCupom = ?");
         
@@ -77,7 +83,9 @@ function verificarExistenciaCupom($codeCupom)
     if (empty($produtos)) {
         return "Nenhum produto vendido foi fornecido.";
     }
-    $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    //$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
     // Prepare a SQL query para inserir vendas de produtos, sem o campo 'valor'
     $stmt = $conn->prepare("INSERT INTO produtosvendidos (qtdVendidos, barCode, id, codeCupom, valor) VALUES (?, ?, ?, ?, ?)");
 

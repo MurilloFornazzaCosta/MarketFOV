@@ -1,9 +1,16 @@
 <?php
 session_start();
-$servername = "ESN509VMYSQL";
-$username = "aluno";
-$password = "Senai1234";
-$dbname = "marketfov4";
+//$servername = "ESN509VMYSQL";
+//$username = "aluno";
+//$password = "Senai1234";
+//$dbname = "marketfov4";
+
+$servername = "localhost";
+$username = "root";
+$password = "102938";
+$dbname = "marketfov5";
+
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
