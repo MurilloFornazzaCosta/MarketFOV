@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+//$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+$conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 // Assuming you already have your $conn (MySQLi connection) set up
 
 // Prepare the SQL statement

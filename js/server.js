@@ -3,17 +3,17 @@ const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
-const port = 3306; // Alterado para uma porta padrão para servidor web
+const port = 3000; // Alterado para uma porta padrão para servidor web
 
 // Configuração do CORS para permitir requisições do frontend
 app.use(cors());
 
 // Configuração da conexão com o banco de dados MySQL
 const conn = mysql.createConnection({
-    host: 'ESN509VMYSQL', // ou '127.0.0.1'
-    user: 'aluno',
-    password: 'Senai1234',
-    database: 'marketfov4'
+    host: 'localhost', // ou '127.0.0.1'
+    user: 'root',
+    password: '102938',
+    database: 'marketfov5'
 });
 
 // Conectar ao banco de dados
