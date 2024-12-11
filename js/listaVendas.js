@@ -29,7 +29,6 @@ async function showVendas() {
     var tabelaVendas = document.getElementById('tabelaVendas');
     var chart = document.querySelector('.chart');
     var title = document.getElementById('titleTabela');
-    var vazio = '';
     const tabelaVendasBody = document.getElementById('tabela-vendas-body');
 
 

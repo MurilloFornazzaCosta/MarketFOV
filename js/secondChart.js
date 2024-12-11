@@ -19,8 +19,6 @@ async function showChart2() {
                 produtosVendidos.push(element);
             });
             nomes = produtosVendidos.map(produto => produto.nome);
-         
-            // Atualiza o gráfico com os novos dados
     
     
         } catch (error) {

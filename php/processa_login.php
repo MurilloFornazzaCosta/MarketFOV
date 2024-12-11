@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 //$servername = "ESN509VMYSQL";
 //$username = "aluno";
 //$password = "Senai1234";
@@ -8,7 +8,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "102938";
-$dbname = "marketfov4";
+$dbname = "marketfov5";
 
 
 // Create connection

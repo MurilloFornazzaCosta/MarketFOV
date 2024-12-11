@@ -7,7 +7,7 @@ let label;
 let dados = [];
 let totaisDasVendas = []; // Para armazenar o valor total de cada venda
 let datasVendas = [];
-let vendas = [];
+const vendas = [];
 let valorVenda;
 var valorDoDia;
 let vendasPorDia = {};
@@ -19,14 +19,9 @@ let dadosVendasSemanas = [0,0,0,0];
 let contador = 0;
 
 
-// Função para obter dados do servidor e calcular o valor total de cada venda
-document.addEventListener("DOMContentLoaded", async function() {
-    await fetchVendas();
-});
-
 async function fetchVendas() {
     try {                                            //3306     
-        const response = await fetch("http://localhost:3000/vendas?cnpj=01234567890123");
+        const response = await fetch('http://localhost:3000/vendas?cnpj=01234567890123');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
