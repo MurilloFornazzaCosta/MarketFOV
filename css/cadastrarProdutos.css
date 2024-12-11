@@ -177,7 +177,7 @@ dialog::backdrop {
 }
 
 
-#button {
+.button {
     border-radius: 15px;
     background-color: #5a8b8a;
     color: #ffffff;
@@ -190,7 +190,7 @@ dialog::backdrop {
     font-weight: bold;
 }
 
-#button:hover {
+.button:hover {
     background-color: #3b6161;
     transform: scale(1.03);
     cursor: pointer;
@@ -267,11 +267,11 @@ select {
     font-size: 1rem;
 }
 
-form {
+.formCadastro {
     margin-top: -2rem;
 }
 
-input {
+.inputCadastro {
     margin-left: 2rem;
     border-radius: 10px;
     border: none;

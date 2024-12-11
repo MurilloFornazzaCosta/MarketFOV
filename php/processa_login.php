@@ -7,12 +7,13 @@ session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = "102938";
+$password = "";
 $dbname = "marketfov5";
+$port = "3307";
 
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Check connection
 if ($conn->connect_error) {

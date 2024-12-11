@@ -83,37 +83,62 @@ unset($_SESSION['erroSenha']);
         </dialog>
 
         <div class="buttons">
-            <a href="../html/cadastrarProdutos.php"><button id="button">Registrar Produto</button></a>
-            <a href="../html/relatorio.php"><button id="button">Relatório de vendas</button></a>
-            <a href="../html/estoque.php"><button id="button">Estoque</button></a>
+        <a href="../html/cadastrarProdutos.php"><button class="button" id="button">Registrar Produto</button></a>
+            <a href=""><button class="button" id="button">Aplicar Desconto</button></a>
+            <button class="button" id="buttonRelatorio">Relatório de vendas</button>
+
+            <dialog id="authDialogRelatorio">
+                <form method="POST" action="/MarketFOV/php/verificarSenhaParaRelatorio.php">
+                    Digite a senha do comércio:
+                    <div class="group">
+                        <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" class="icon">
+                            <path
+                                d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                                stroke-linejoin="round" stroke-linecap="round"></path>
+                        </svg>
+                        <input id="inputSenhaModal" class="input" type="password" placeholder="senha" name="senha"
+                            required>
+                    </div>
+
+                    <?php if (isset($message)): ?>
+
+                        <h1 id="errorMessage" style="color: red; display: block; font-size:12px;"><?php echo $message ?>
+                        </h1>
+                    <?php endif; ?>
+                    <button type="submit" id="btnCloseModal">Editar dados</button>
+                </form>
+            </dialog>
+
+            <a href="../html/estoque.php"><button class="button" id="button">Estoque</button></a>
             <a href="../html/fazerCompras.php"><button id="btfecharcaixa">Realizar Compra</button></a>
         </div>
     </div>
     <main>
         <div class="detalhesProduto">
             <h1>Registrar Produtos</h1>
-            <form id="meuFormulario" action="../php/process_cadastroProdutos.php" method="POST">
+            <form class="formCadastro" id="meuFormulario" action="../php/process_cadastroProdutos.php" method="POST">
                 <label for="codigodebarra" id="textcdb">Código de Barras</label>
                 <br>
-                <input type="text" id="codigodebarra" name="codigodebarra">
+                <input class="inputCadastro" type="text" id="codigodebarra" name="codigodebarra">
                 <span class="error" id="errorCDB"></span>
                 <br><br>
 
                 <label for="nome" id="textName">Nome do Produto</label>
                 <br>
-                <input type="text" id="nome" name="nome">
+                <input class="inputCadastro" type="text" id="nome" name="nome">
                 <span class="error" id="errorNome"></span>
                 <br><br>
 
                 <label for="preco" id="textPreco">Preço</label>
                 <br>
-                <input type="text" id="preco" name="preco">
+                <input class="inputCadastro" type="text" id="preco" name="preco">
                 <span class="error" id="errorPreco"></span>
                 <br><br>
 
                 <label for="quantd" id="textQuantd">Quantidade</label>
                 <br>
-                <input type="text" id="quantd" name="quantd">
+                <input class="inputCadastro" type="text" id="quantd" name="quantd">
                 <span class="error" id="errorQuantd"></span>
                 <br><br>
 
