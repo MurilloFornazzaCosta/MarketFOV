@@ -135,37 +135,6 @@ unset($_SESSION['erroSenha']);
             <img src="../imgs/erroAoRegistrar.png" id="erroAoRegistrar" alt="Erro ao Registrar">
         </div>
     </main>
-    <div class="tabelaProdutos">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Produto</th>
-                    <th scope="col">Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Danoninho</th>
-                    <td>R$15,30</td>
-                </tr>
-                <tr>
-                    <th scope="row">Manteiga</th>
-                    <td>R$7,30</td>
-                </tr>
-                <tr>
-                    <th scope="row">Nescau</th>
-                    <td>R$12,50</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th scope="row" colspan="1">Total</th>
-                    <td>R$35,10</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
     <script>
         const buttonRelatorio = document.getElementById("buttonRelatorio");
         const btnImg = document.getElementById("btnImg");

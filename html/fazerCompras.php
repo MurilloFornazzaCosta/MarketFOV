@@ -24,6 +24,7 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
     $produtoNome = htmlspecialchars($_GET['name']);
     $produtoPreco = htmlspecialchars($_GET['price']);
     $produtoBarCode = htmlspecialchars($_GET['barCode']);
+    $id = htmlspecialchars($_GET['id']);
     // Verificar se o produto existe antes de adicionar à sessão
     if (!empty($produtoNome) && is_numeric($produtoPreco) && !empty($produtoNome)) {
         // Se o produto já está na sessão, incrementar a quantidade
@@ -34,7 +35,8 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
             $_SESSION['produtos'][$produtoNome] = [
                 'preco' => $produtoPreco,
                 'quantidade' => 1,
-                'barCode' => $produtoBarCode
+                'barCode' => $produtoBarCode,
+                'id' => $id
             ];
         }
     }
@@ -97,7 +99,6 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
 
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button class="button" id="button">Registrar Produto</button></a>
-            <a href=""><button class="button" id="button">Aplicar Desconto</button></a>
             <button class="button" id="buttonRelatorio">Relatório de vendas</button>
 
             <dialog id="authDialogRelatorio">
