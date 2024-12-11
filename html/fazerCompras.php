@@ -99,7 +99,6 @@ if (isset($_GET['name']) && isset($_GET['price']) && isset($_GET['barCode'])) {
 
         <div class="buttons">
             <a href="../html/cadastrarProdutos.php"><button class="button" id="button">Registrar Produto</button></a>
-            <a href=""><button class="button" id="button">Aplicar Desconto</button></a>
             <button class="button" id="buttonRelatorio">Relatório de vendas</button>
 
             <dialog id="authDialogRelatorio">

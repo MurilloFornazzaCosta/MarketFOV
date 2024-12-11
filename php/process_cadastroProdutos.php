@@ -3,8 +3,8 @@ session_start();
 $message;
 
 // Create connection with error handling
-//$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
-$conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+$conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+// $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

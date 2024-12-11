@@ -87,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         $login = null;
-        //$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
-        $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+        $conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+        // $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 
         $insere = $conn->prepare("INSERT INTO mercados VALUES (?, ?, ?, ?, ?, ?)");
         $insere->bind_param('ssssss', $endereco, $im, $cnpj, $ie, $name, $senha);
