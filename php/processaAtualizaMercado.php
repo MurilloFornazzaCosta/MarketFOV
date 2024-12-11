@@ -1,5 +1,6 @@
 <?php
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    $conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+    // $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 
 // Check connection
 if ($conn->connect_error) {

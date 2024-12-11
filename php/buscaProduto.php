@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+$conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+// $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
 // Assuming you already have your $conn (MySQLi connection) set up
 
 // Prepare the SQL statement
@@ -21,13 +22,15 @@ $result = $query->get_result();
 // Check if any rows were returned
 if ($result->num_rows > 0) {
     // Fetch the row
+    
     $row = $result->fetch_assoc();
     if ($row['cnpj'] == $_SESSION['mercadoLogado']['cnpj']) {
         $name = $row['nome'];
-    $price = $row['preco'];
-    $barCode = $row['barCode'];
+        $price = $row['preco'];
+        $barCode = $row['barCode'];
+        $id = $row['id'];
     // Redirect to the previous page with the name and price as query parameters
-    header("Location: /MarketFOV/html/fazerCompras.php" . "?name=" . urlencode($name) . "&price=" . urlencode($price) . "&barCode=" . urlencode($barCode));
+    header("Location: /MarketFOV/html/fazerCompras.php" . "?name=" . urlencode($name) . "&price=" . urlencode($price) . "&barCode=" . urlencode($barCode). "&id=" . urlencode($id));
     exit(); // Make sure to exit after the redirect
     } else{
         header("Location: /MarketFOV/html/fazerCompras.php" . "?name=Produto Não Encontrado" );

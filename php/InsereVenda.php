@@ -1,11 +1,14 @@
 <?php
 session_start();
 $produtos = [];
+print_r($produtos);
 foreach ($_SESSION['produtos'] as $produto) {
     $produtos[] = $produto;
 }
 $mercado = $_SESSION['mercadoLogado'];
-$conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+$conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+// $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     adicionarVenda(null, $mercado['im'], $mercado['cnpj'], $mercado['ie'], $produtos);
     unset($_SESSION['produtos']);
@@ -28,7 +31,9 @@ function adicionarVenda($cpfCliente, $im, $cnpj, $ie, $produtos = []) {
     
     // Definir a data da ve0 nda
     $data = date("Y-m-d");
-    $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+    $conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+    // $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
     // Preparar a consulta SQL para inserir a venda
     $stmt = $conn->prepare("INSERT INTO venda (codeCupom, dataVenda, cpfCliente, im, cnpj, ie, totalVenda) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -52,7 +57,9 @@ function adicionarVenda($cpfCliente, $im, $cnpj, $ie, $produtos = []) {
 }
 function verificarExistenciaCupom($codeCupom)
     {
-        $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
+        $conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+        // $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+
         // Prepare the query to check if the cupom exists in the venda table
         $stmt = $conn->prepare("SELECT COUNT(*) FROM venda WHERE codeCupom = ?");
         
@@ -71,43 +78,54 @@ function verificarExistenciaCupom($codeCupom)
         
         return $count > 0;
     }
-     function inserirProdutosVendidos($produtos = [], $codeCupom)
-{
-    // Verifica se o array de produtos está vazio
-    if (empty($produtos)) {
-        return "Nenhum produto vendido foi fornecido.";
-    }
-    $conn = new mysqli('ESN509VMYSQL', 'aluno', 'Senai1234', 'marketfov4');
-    // Prepare a SQL query para inserir vendas de produtos, sem o campo 'valor'
-    $stmt = $conn->prepare("INSERT INTO produtosvendidos (qtdVendidos, barCode, id, codeCupom, valor) VALUES (?, ?, ?, ?, ?)");
-
-    if ($stmt === false) {
-        return "Erro ao preparar a consulta de inserção: " . $this->conn->error;
-    }
-
-    foreach ($produtos as $produto) {
-        // Verificar se a chave 'codeCupom' está presente no array do produto
-        if (!isset($produto['codeCupom'])) {
-            return "A chave 'codeCupom' não foi definida para o produto com código de barras " . $produto['barCode'] . ".";
+    function inserirProdutosVendidos($produtos = [], $codeCupom)
+    {
+        // Verifica se o array de produtos está vazio
+        if (empty($produtos)) {
+            return "Nenhum produto vendido foi fornecido.";
         }
-        $total = $produto['qtdVendidos'] * $produto['valor'];
-        // Obter o código do cupom e remover espaços extras
-        // Verificar se o código do cupom existe na tabela 'venda'
-        if (!$this->verificarExistenciaCupom($codeCupom)) {
-            return "O código do cupom '$codeCupom' não existe na tabela 'venda'.";
+        $conn = new mysqli('10.87.100.6', 'aluno', 'Senai1234', 'marketfov4');
+        // $conn = new mysqli('localhost', 'root', '102938', 'marketfov5');
+    
+        // Prepare a SQL query para inserir vendas de produtos
+        $stmt = $conn->prepare("INSERT INTO produtosvendidos (qtdVendidos, barCode, id, codeCupom, valor) VALUES (?, ?, ?, ?, ?)");
+        // Prepare a SQL query para atualizar o estoque
+        $editaEstoque = $conn->prepare('UPDATE produtos SET qtd = qtd - ? WHERE barCode = ?');
+    
+        if ($stmt === false || $editaEstoque === false) {
+            return "Erro ao preparar a consulta de inserção ou atualização: " . $conn->error;
         }
-
-        // Bind dos parâmetros para a consulta (não estamos mais incluindo 'valor')
-        $stmt->bind_param('isssd', $produto['qtdVendidos'], $produto['barCode'], $produto['idProduto'], $codeCupom, $total);
-
-        // Executar a consulta
-        if (!$stmt->execute()) {
-            return "Erro ao inserir produto vendido: " . $stmt->error;
+    
+        foreach ($produtos as $produto) {
+            // Obter o total para o produto (quantidade * preço)
+            $total = $produto['quantidade'] * $produto['preco'];
+    
+            // Verificar se o código do cupom existe na tabela 'venda'
+            if (!verificarExistenciaCupom($codeCupom)) {
+                return "O código do cupom '$codeCupom' não existe na tabela 'venda'.";
+            }
+         
+            // Bind dos parâmetros para a consulta de inserção
+            $stmt->bind_param('isssd', $produto['quantidade'], $produto['barCode'], $produto['id'], $codeCupom, $total);
+    
+            // Executar a consulta de inserção dos produtos vendidos
+            if (!$stmt->execute()) {
+                return "Erro ao inserir produto vendido: " . $stmt->error;
+            }
+    
+            // Agora atualiza o estoque, subtraindo a quantidade vendida
+            $editaEstoque->bind_param('is', $produto['quantidade'], $produto['barCode']);
+            
+            // Executar a consulta de atualização do estoque
+            if (!$editaEstoque->execute()) {
+                return "Erro ao atualizar o estoque: " . $editaEstoque->error;
+            }
         }
+    
+        // Fechar as consultas
+        $stmt->close();
+        $editaEstoque->close();
+    
+        return "Produtos vendidos inseridos e estoque atualizado com sucesso!";
     }
-
-    // Fechar a consulta
-    $stmt->close();
-
-    return "Produtos vendidos inseridos com sucesso!";
-}
+    
