@@ -13,23 +13,24 @@ var valorDoDia;
 let vendasPorDia = {};
 let vendasPorMes = {};
 let arrayMeses = ['01-2024', '02-2024', '03-2024', '04-2024', '05-2024', '06-2024', '07-2024', '08-2024', '09-2024', '10-2024', '11-2024', '12-2024'];
-let dadosVendasDias = [0,0,0,0,0,0,0]
-let dadosVendasMes = [0,0,0,0,0,0,0,0,0,0,0,0];
-let dadosVendasSemanas = [0,0,0,0];
+let dadosVendasDias = [0, 0, 0, 0, 0, 0, 0]
+let dadosVendasMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let dadosVendasSemanas = [0, 0, 0, 0];
 let contador = 0;
 
 
-async function fetchVendas() {
+async function fetchVendasCnpj() {
     try {                                            //3306     
-        const response = await fetch('http://localhost:3000/vendas?cnpj=01234567890123');
+        const response = await fetch(`http://localhost:3306/vendas?cnpj=${cnpj}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
         data.forEach(element => {
             vendas.push(element);
+
         });
-       
+
         // Atualiza o gráfico com os novos dados
         if (barchart) {
             barchart.data.datasets[0].data = totaisDasVendas;
@@ -37,7 +38,6 @@ async function fetchVendas() {
         }
 
     } catch (error) {
-        console.error('Houve um problema com a requisição Fetch:', error);
     }
 }
 
@@ -62,7 +62,6 @@ function somaVendasPorMes() {
                 vendasPorMes[mesAno] = venda.totalVenda;
             }
         } else {
-            console.error('Data inválida para venda:', venda);
         }
     });
 
@@ -78,25 +77,23 @@ function somaVendasPorMes() {
 
 
 document.addEventListener('DOMContentLoaded', async function () {
-    await fetchVendas(); 
-    console.log(vendas);
+    await fetchVendasCnpj();
 
 
 
     const mesesInit = somaVendasPorMes().map(item => item.mesAno);
-        console.log(mesesInit);
 
-        for (let i = 0; i < mesesInit.length; i++) {
-            for (let i2 = 0; i2 < arrayMeses.length; i2++) {
-                if (mesesInit[i] == arrayMeses[i2]) {
-                    dadosVendasMes[i2] = somaVendasPorMes().map(item => item.totalVenda)[i];
-                }
-                
+    for (let i = 0; i < mesesInit.length; i++) {
+        for (let i2 = 0; i2 < arrayMeses.length; i2++) {
+            if (mesesInit[i] == arrayMeses[i2]) {
+                dadosVendasMes[i2] = somaVendasPorMes().map(item => item.totalVenda)[i];
             }
-                
+
         }
 
-        dados = dadosVendasMes;
+    }
+
+    dados = dadosVendasMes;
 
 
     selectElement.value = 'mes';
@@ -164,16 +161,14 @@ selectElement.addEventListener("change", function () {
         const hoje = new Date(); // Obtém a data atual
         const mesAtual = hoje.getMonth(); // Obtém o mês atual (0 para Janeiro, 11 para Dezembro)
         const anoAtual = hoje.getFullYear(); // Obtém o ano atual
-    
+
         // Filtrar as vendas que ocorreram no mês e ano atual
         return vendas.filter(venda => {
             const dataVenda = new Date(venda.data); // Corrige para acessar a propriedade 'data'
             return dataVenda.getMonth() === mesAtual && dataVenda.getFullYear() === anoAtual;
         });
     }
-        
 
-    console.log(somaVendasPorMes())
 
 
 
@@ -186,7 +181,7 @@ selectElement.addEventListener("change", function () {
         const dataObj = new Date(data);
         const primeiroDiaDoAno = new Date(dataObj.getFullYear(), 0, 1);
         const diasPassados = Math.floor((dataObj - primeiroDiaDoAno) / (24 * 60 * 60 * 1000));
-        
+
         // Calcula o número da semana, considerando o primeiro dia do ano como semana 1
         return Math.ceil((diasPassados + primeiroDiaDoAno.getDay() + 1) / 7);
     }
@@ -199,27 +194,27 @@ selectElement.addEventListener("change", function () {
         function getNumeroSemanaDoMes(data) {
             const dataObj = new Date(data);
             const diaDoMes = dataObj.getDate(); // Obtém o dia do mês
-        
+
             // Ajusta o cálculo para que a semana do mês seja calculada corretamente
             const semanaDoMes = Math.ceil(diaDoMes / 7); // Dividindo o dia do mês por 7 para determinar a semana do mês
-        
+
             return 'Semana ' + semanaDoMes; // Retorna o número da semana dentro do mês
         }
-        
+
         function obterDatasPorSemanaDoMes(datas) {
             const hoje = new Date();
             const mesAtual = hoje.getMonth(); // Obtém o mês atual (0 para Janeiro, 11 para Dezembro)
             const anoAtual = hoje.getFullYear(); // Obtém o ano atual
-            
+
             // Filtro para pegar apenas as datas que são do mês e ano atual
             const datasDoMesAtual = datas.filter(data => {
                 const dataObj = new Date(data);
                 return dataObj.getMonth() === mesAtual && dataObj.getFullYear() === anoAtual;
             });
-        
+
             // Objeto para armazenar as semanas e suas respectivas datas
             const semanasDoMes = {};
-        
+
             // Itera sobre as datas do mês atual
             datasDoMesAtual.forEach(data => {
                 const semanaRelativa = getNumeroSemanaDoMes(data); // Calcula a semana relativa do mês
@@ -228,18 +223,18 @@ selectElement.addEventListener("change", function () {
                 }
                 semanasDoMes[semanaRelativa].push(data); // Adiciona a data à semana correspondente
             });
-        
+
             return semanasDoMes;
         }
 
         function somaVendasPorSemana(vendas) {
             const vendasPorSemana = {}; // Objeto para armazenar as vendas por semana
-        
+
             vendas.forEach(venda => {
                 if (venda.data && typeof venda.data === 'string') {
                     // Extrair o número da semana da data da venda
                     const semana = getNumeroSemanaDoMes(venda.data);
-                    
+
                     if (vendasPorSemana[semana]) {
                         // Se já houver vendas para essa semana, somar o total da venda atual
                         vendasPorSemana[semana] += venda.totalVenda;
@@ -248,119 +243,98 @@ selectElement.addEventListener("change", function () {
                         vendasPorSemana[semana] = venda.totalVenda;
                     }
                 } else {
-                    console.error('Data inválida para venda:', venda);
                 }
             });
-        
+
             // Converter o objeto vendasPorSemana em um array de resultados
             const resultados = Object.keys(vendasPorSemana).map(semana => {
                 return { semana: semana, totalVenda: vendasPorSemana[semana] };
             });
-        
+
             return resultados;
         }
-    
-        console.log(somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())));
-        
+
 
         const semanas = obterDatasPorSemanaDoMes(dias);
 
         for (let i = 0; i < label.length; i++) {
-            
+
             for (let i2 = 0; i2 < somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).length; i2++) {
                 if (somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).map(item => item.semana)[i2] == label[i]) {
-                    console.log('teste certo');
                     dadosVendasSemanas[i] = somaVendasPorSemana(filtrarVendasMesAtual(somaVendasPorDia())).map(item => item.totalVenda)[i2];
-                } else {
-                    console.log('teste errado');
+                }
 
-                } 
-                
             }
-            
+
         }
 
         dados = dadosVendasSemanas;
-        console.log(dadosVendasSemanas);
-        console.log(label);
 
 
-        
-        
-        console.log(semanas);
-        
-        //console.log(dias);
+
 
     }
 
     if (selectElement.value == "mes") {
         label = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-        
+
         const meses = somaVendasPorMes().map(item => item.mesAno);
-        console.log(meses);
 
         for (let i = 0; i < meses.length; i++) {
             for (let i2 = 0; i2 < arrayMeses.length; i2++) {
                 if (meses[i] == arrayMeses[i2]) {
                     dadosVendasMes[i2] = somaVendasPorMes().map(item => item.totalVenda)[i];
                 }
-                
+
             }
-                
+
         }
 
         dados = dadosVendasMes;
-        console.log(dadosVendasMes);
-        //console.log(somaVendasPorMes().map(item => item.totalVenda));
 
     }
 
     if (selectElement.value == "dia") {
         label = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
         const dias = somaVendasPorDia().map(item => item.data);
-        console.log(dias + ' = dias');
 
-        
+
         function mesmaSemana(data) {
             const hoje = new Date();
-            
+
             // Obtém número da semana e ano da data fornecida
             const numeroSemanaData = getNumeroSemana(data);
             const anoData = new Date(data).getFullYear();
-            
+
             // Obtém número da semana e ano da data atual
             const numeroSemanaAtual = getNumeroSemana(hoje);
             const anoAtual = hoje.getFullYear();
-            
+
             // Verifica se é a mesma semana e o mesmo ano
             return numeroSemanaData === numeroSemanaAtual && anoData === anoAtual;
         }
-        
+
         // Exemplo de uso
-        
+
 
         for (let i = 0; i < dias.length; i++) {
 
             const diaSemanaObj = new Date(dias[i]);
             const diaSemana = diaSemanaObj.getDay();
-            console.log(label[diaSemana] + 'teste');
 
             if (mesmaSemana(dias[i])) {
-                console.log('true');
                 for (let i2 = 0; i2 < label.length; i2++) {
                     if (label[diaSemana] == label[i2]) {
                         dadosVendasDias[i2] = somaVendasPorDia().map(item => item.totalVenda)[i];
-                    }    
+                    }
                 }
-                
+
             } else {
-                console.log('false');
             }
-            
+
         }
 
         dados = dadosVendasDias;
-        console.log(dadosVendasDias);
 
     }
 

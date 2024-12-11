@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
-const port = 3000; // Alterado para uma porta padrão para servidor web
+const port = 3306; // Alterado para uma porta padrão para servidor web
 
 // Configuração do CORS para permitir requisições do frontend
 app.use(cors());
@@ -12,8 +12,9 @@ app.use(cors());
 const conn = mysql.createConnection({
     host: 'localhost', // ou '127.0.0.1'
     user: 'root',
-    password: '102938',
-    database: 'marketfov5'
+    password: '',
+    database: 'marketfov5',
+    port: 3307
 });
 
 // Conectar ao banco de dados
@@ -48,9 +49,14 @@ app.get('/vendas', (req, res) => {
 
 // Rota para obter TODOS dados da tabela venda
 app.get('/vendas-totais', (req, res) => {
-    
-    const query = 'SELECT * FROM venda;' // Substitua pelo seu SQL
-    conn.query(query, (err, results) => {
+    const cnpj = req.query.cnpj; // Obtém o CNPJ dos parâmetros da URL
+
+    if (!cnpj) {
+        return res.status(400).json({ error: "CNPJ não fornecido na URL" });
+    }
+
+    const query = 'SELECT * FROM venda WHERE cnpj = ?;'; // Usando o CNPJ obtido para filtrar as vendas
+    conn.query(query, [cnpj], (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
             res.status(500).json({ error: 'Erro ao executar a consulta' });
@@ -58,12 +64,19 @@ app.get('/vendas-totais', (req, res) => {
         }
         res.json(results);
     });
-    console.log("Rota /vendasTotais foi acessada.");
+    console.log(`Consulta de vendas totais feita para o CNPJ: ${cnpj}`);
 });
 
 app.get('/produtos-vendidos', (req, res) => {
-    const query = 'SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom FROM produtosvendidos pvd JOIN produtos p ON pvd.id = p.id AND pvd.barCode = p.barCode JOIN venda v ON v.codeCupom = pvd.codeCupom;' // Substitua pelo seu SQL
-    conn.query(query, (err, results) => {
+    const cnpj = req.query.cnpj;  // Obtém o CNPJ dos parâmetros da URL
+
+    if (!cnpj) {
+        return res.status(400).json({ error: "CNPJ não fornecido na URL" });
+    }
+
+    const query = 'SELECT pvd.qtdVendidos, p.barCode, p.id, p.nome, pvd.codeCupom FROM produtosVendidos pvd JOIN produtos p ON p.barCode = pvd.barCode JOIN venda v ON v.codeCupom = pvd.codeCupom WHERE v.cnpj = ?;';
+
+    conn.query(query, [cnpj], (err, results) => {
         if (err) {
             console.error('Erro ao executar a consulta:', err);
             res.status(500).json({ error: 'Erro ao executar a consulta' });
@@ -71,6 +84,7 @@ app.get('/produtos-vendidos', (req, res) => {
         }
         res.json(results);
     });
+
     console.log("Rota /produtos-vendidos foi acessada.");
 });
 

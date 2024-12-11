@@ -1,3 +1,4 @@
+
 let produtosVendidos = [];
 let nomesEqtd = {};
 let dadosChart = [];
@@ -8,9 +9,9 @@ let nomesProdutos = [];
 
 async function showChart2() {
 
-    async function fetchVendas() {
+    async function fetchVendasProdutos() {
         try {
-            const response = await fetch('http://localhost:3000/produtos-vendidos');
+            const response = await fetch(`http://localhost:3306/produtos-vendidos?cnpj=${cnpj}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -19,36 +20,35 @@ async function showChart2() {
                 produtosVendidos.push(element);
             });
             nomes = produtosVendidos.map(produto => produto.nome);
-    
-    
+
+
         } catch (error) {
             console.error('Houve um problema com a requisição Fetch:', error);
         }
     }
 
-    await fetchVendas();
+    await fetchVendasProdutos();
 
-    function top5Elements(nomes) {
-        // Contar a frequência de cada elemento
-        const countMap = {};
-        nomes.forEach(item => {
-            countMap[item] = (countMap[item] || 0) + 1;
-        });
-    
-        // Converter o objeto em um array de [elemento, contagem]
-        const sortedElements = Object.entries(countMap)
-            .sort((a, b) => b[1] - a[1]) // Ordenar por contagem em ordem decrescente
-            .slice(0, 5); // Pegar os 5 elementos mais frequentes
-    
-        return sortedElements.map(([element, count]) => ({ element, count }));
+    function getTop5Produtos(produtos) {
+        // Ordena os produtos pela quantidade vendida em ordem decrescente
+        const sortedProdutos = produtos.sort((a, b) => b.qtdVendidos - a.qtdVendidos);
+
+        // Seleciona os 5 primeiros produtos
+        const top5Produtos = sortedProdutos.slice(0, 5);
+
+        // Retorna o nome e a quantidade vendidos dos 5 produtos mais vendidos
+        return top5Produtos.map(produtos => ({
+            nome: produtos.nome,
+            qtdVendidos: produtos.qtdVendidos
+        }));
     }
-    
-    // Exemplo de uso
-    
-    nomesProdutos = top5Elements(nomes).map(item => item.element);
-    dadosChart = top5Elements(nomes).map(item => item.count);
 
-    console.log(nomes);
+    // Exemplo de uso
+
+    nomesProdutos = getTop5Produtos(produtosVendidos).map(item => item.nome);
+    dadosChart = getTop5Produtos(produtosVendidos).map(item => item.qtdVendidos);
+
+   
     // Seleciona a div que irá conter o gráfico
     var tabelaProdutosDiv = document.querySelector('.tabelaProdutos');
 
@@ -93,7 +93,7 @@ async function showChart2() {
                     'rgba(255, 206, 86, 0.7)',
                     'rgba(75, 192, 192, 0.7)',
                     'rgba(153, 102, 255, 0.7)'
-                    
+
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -101,7 +101,7 @@ async function showChart2() {
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)'
-                    
+
                 ],
                 borderWidth: 1
             }]
@@ -114,7 +114,7 @@ async function showChart2() {
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(tooltipItem) {
+                        label: function (tooltipItem) {
                             return tooltipItem.label + ': ' + tooltipItem.raw;
                         }
                     }

@@ -1,8 +1,9 @@
 const vendasTotais = [];
 
+
 async function fetchVendas() {
     try {
-        const response = await fetch('http://localhost:3000/vendas-totais');
+        const response = await fetch(`http://localhost:3306/vendas-totais?cnpj=${cnpj}`);
         if (!response.ok) {
             throw new Error(`Erro de rede: ${response.statusText}`);
         }
@@ -35,7 +36,6 @@ async function showVendas() {
     divLista.style.height = '900px';
     tabelaVendas.style.display = 'inline';
     tabelaVendas.style.borderCollapse = 'collapse';
-    //tabelaVendas.style.border = '2px solid #5a8b7a';
     tabelaVendas.style.borderRadius = '10px';
     tabelaVendas.style.marginBottom = '50px'
     chart.style.marginBottom = '100px';
@@ -60,7 +60,6 @@ async function showVendas() {
             <th scope="row">${venda.codeCupom}</th>
             <td>${venda.dataVenda}</td>
             <td>${venda.cpfCliente}</td>
-            <td>${venda.im}</td>
             <td>${venda.cnpj}</td>
             <td>${venda.ie}</td>
             <td>R$ ${venda.totalVenda}</td>
@@ -71,7 +70,7 @@ async function showVendas() {
         tabelaVendasBody.appendChild(row);
         
     });
-    
-    // Agora, `vendasData` contém os dados retornados pela fetchVendas
-    console.log(vendasData);
+
+    console.log("legal");
+
 }

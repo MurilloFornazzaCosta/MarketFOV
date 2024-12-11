@@ -106,7 +106,6 @@ unset($_SESSION['erroSenha']);
                             <th scope="col">Cupom</th>
                             <th scope="col">Data</th>
                             <th scope="col">CPF do cliente</th>
-                            <th scope="col">IM</th>
                             <th scope="col">CNPJ</th>
                             <th scope="col">IE</th>
                             <th scope="col">Total da venda</th>
@@ -178,6 +177,7 @@ unset($_SESSION['erroSenha']);
         });
     </script>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -188,7 +188,7 @@ unset($_SESSION['erroSenha']);
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="../js/mainChart.js"></script>
     <script src="../js/secondChart.js"></script>
-    <script src="../js/listaVendas.js"></script>
+    <script src="../js/listaVenda.js"></script>
 </body>
 
 </html>
